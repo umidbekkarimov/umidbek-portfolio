@@ -91,3 +91,91 @@ input,textarea{font-family:"DM Sans",sans-serif;}
 @keyframes slideInRight{from{opacity:0;transform:translateX(50px);}to{opacity:1;transform:translateX(0);}}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
 @keyframes scaleIn{from{opacity:0;transform:scale(0.88);}to{opacity:1;transform:scale(1);}}
+/* Redesigned Hero Elements */
+@keyframes floatCard1 {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+@keyframes floatCard2 {
+  0%, 100% { transform: translateY(0px) rotate(1deg); }
+  50% { transform: translateY(-15px) rotate(-1deg); }
+}
+@keyframes floatCard3 {
+  0%, 100% { transform: translateY(0px) rotate(-0.5deg); }
+  50% { transform: translateY(-12px) rotate(0.5deg); }
+}
+
+.float-card-1 {
+  animation: floatCard1 5s ease-in-out infinite;
+}
+.float-card-2 {
+  animation: floatCard2 6s ease-in-out infinite;
+}
+.float-card-3 {
+  animation: floatCard3 7s ease-in-out infinite;
+}
+
+@keyframes floatAe {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(4deg); }
+}
+.float-ae {
+  animation: floatAe 4s ease-in-out infinite;
+}
+
+@keyframes floatMaya {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(-3deg); }
+}
+.float-maya {
+  animation: floatMaya 4.5s ease-in-out infinite;
+}
+
+@keyframes floatBlender {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-9px) rotate(5deg); }
+}
+.float-blender {
+  animation: floatBlender 5s ease-in-out infinite;
+}
+
+@keyframes floatSphere {
+  0%, 100% { transform: translate(0px, 0px); }
+  50% { transform: translate(6px, -12px); }
+}
+.float-sphere {
+  animation: floatSphere 5s ease-in-out infinite;
+}
+
+@keyframes floatPyramid {
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  50% { transform: translate(-6px, -10px) rotate(-10deg); }
+}
+.float-pyramid {
+  animation: floatPyramid 6s ease-in-out infinite;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.65;
+  }
+  90% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(40px);
+    opacity: 0;
+  }
+}

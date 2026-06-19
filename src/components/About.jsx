@@ -1,60 +1,258 @@
 import { useState } from "react";
+import { BookOpen, Cpu, Sparkles, Check, Clock } from "lucide-react";
 
-export default function About({ t, th, isDark, SL, Reveal }) {
+const IntroCard = ({ t, th, isDark }) => {
+  const [h, setH] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        padding: "24px 28px",
+        borderRadius: 24,
+        border: `1px solid ${h ? th.accent + "50" : th.border}`,
+        background: isDark ? "rgba(255, 255, 255, 0.015)" : "rgba(255, 255, 255, 0.6)",
+        backdropFilter: "blur(12px)",
+        boxShadow: h ? `0 12px 32px rgba(59, 130, 246, 0.08)` : "none",
+        transform: h ? "translateY(-4px)" : "none",
+        transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+        marginBottom: 30
+      }}
+    >
+      <p className="dm" style={{ fontSize: 15, color: th.text, fontWeight: 600, lineHeight: 1.6, marginBottom: 12 }}>
+        {t.about.intro.line1}
+      </p>
+      <p className="dm" style={{ fontSize: 14, color: th.textSub, lineHeight: 1.75, marginBottom: 12 }}>
+        {t.about.intro.line2}
+      </p>
+      <p className="dm" style={{ fontSize: 14, color: th.textSub, lineHeight: 1.75, marginBottom: 0 }}>
+        {t.about.intro.line3}
+      </p>
+    </div>
+  );
+};
+
+const InfoCard = ({ title, desc, icon, th }) => {
+  const [h, setH] = useState(false);
+  return (
+    <div
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        display: "flex",
+        alignItems: "start",
+        gap: 16,
+        padding: "18px 20px",
+        borderRadius: 18,
+        border: `1px solid ${h ? th.accent + "40" : th.border}`,
+        background: h ? `${th.accent}05` : th.surface,
+        transform: h ? "translateY(-2px)" : "none",
+        boxShadow: h ? `0 8px 24px rgba(59, 130, 246, 0.05)` : "none",
+        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
+      }}
+    >
+      <div style={{ 
+        marginTop: 2,
+        color: th.accent, 
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent: "center",
+        width: 38,
+        height: 38,
+        borderRadius: 10,
+        background: `${th.accent}0d`,
+        boxShadow: h ? `0 0 12px ${th.accent}33` : "none",
+        transition: "box-shadow 0.3s"
+      }}>
+        {icon}
+      </div>
+      <div>
+        <h4 className="rl" style={{ fontSize: 15, fontWeight: 700, color: th.text, margin: 0, marginBottom: 4 }}>
+          {title}
+        </h4>
+        <p className="dm" style={{ fontSize: 13, color: th.textSub, lineHeight: 1.6, margin: 0 }}>
+          {desc}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const SkillPill = ({ text, th, isDark }) => {
+  const [h, setH] = useState(false);
+  return (
+    <span
+      className="dm"
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        padding: "10px 18px",
+        borderRadius: 100,
+        border: `1px solid ${h ? th.accent : th.border}`,
+        background: h ? `${th.accent}12` : th.surface,
+        color: h ? (isDark ? "#93c5fd" : th.accentHov) : th.textSub,
+        fontSize: 13,
+        fontWeight: 500,
+        boxShadow: h ? `0 0 15px ${th.accent}1c` : "none",
+        transform: h ? "translateY(-2px)" : "none",
+        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        cursor: "default"
+      }}
+    >
+      {text}
+    </span>
+  );
+};
+
+const OpenToWorkCard = ({ t, th, isDark, scrollTo }) => {
+  const [h, setH] = useState(false);
+  const [btnH, setBtnH] = useState(false);
+  const info = t.about.openToWork;
+  return (
+    <div
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        padding: "24px 28px",
+        borderRadius: 22,
+        border: "1px solid rgba(74, 222, 128, 0.2)",
+        background: isDark ? "rgba(74, 222, 128, 0.03)" : "rgba(74, 222, 128, 0.06)",
+        boxShadow: h ? "0 12px 32px rgba(74, 222, 128, 0.08)" : "none",
+        transform: h ? "translateY(-4px)" : "none",
+        transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+        position: "relative",
+        overflow: "hidden"
+      }}
+    >
+      <div style={{
+        position: "absolute",
+        top: -40,
+        right: -40,
+        width: 120,
+        height: 120,
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, transparent 70%)",
+        filter: "blur(10px)",
+        pointerEvents: "none"
+      }} />
+
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", flexWrap: "wrap", gap: 20 }}>
+        <div>
+          <div style={{ height: 20, display: "flex", alignItems: "center", marginBottom: 12 }}>
+            <h4 className="rl" style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#4ade80", margin: 0 }}>
+              {info.title}
+            </h4>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {info.options.map((opt, idx) => (
+              <div key={idx} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <Check style={{ width: 14, height: 14, color: "#4ade80" }} />
+                <span className="dm" style={{ fontSize: 14, fontWeight: 500, color: th.text }}>{opt}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, height: 20, marginBottom: 12 }}>
+            <Clock style={{ width: 14, height: 14, color: "#4ade80", opacity: 0.8 }} />
+            <span className="dm" style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: th.textSub }}>
+              {info.responseTimeLabel}
+            </span>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <span className="rl" style={{ fontSize: 18, fontWeight: 800, color: "#4ade80", display: "block", lineHeight: 1.2 }}>
+              {info.responseTime}
+            </span>
+            <button
+              onClick={() => scrollTo?.("contact")}
+              onMouseEnter={() => setBtnH(true)}
+              onMouseLeave={() => setBtnH(false)}
+              className="dm"
+              style={{
+                padding: "10px 24px",
+                borderRadius: 100,
+                background: "#4ade80",
+                color: "#06080c",
+                fontWeight: 700,
+                fontSize: 13,
+                border: "none",
+                cursor: "pointer",
+                boxShadow: btnH ? "0 8px 20px rgba(74, 222, 128, 0.4)" : "none",
+                transform: btnH ? "translateY(-2px)" : "none",
+                transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
+              }}
+            >
+              {info.btn}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function About({ t, th, isDark, SL, Reveal, scrollTo }) {
   return (
     <>
       {/* ═══ ABOUT ═══ */}
-      <section id="about" style={{ position:"relative", zIndex:1, padding:"110px 0", borderTop:`1px solid ${th.divider}` }}>
+      <section id="about" style={{ position:"relative", zIndex:1, padding:"140px 0", borderTop:`1px solid ${th.divider}` }}>
         <div className="section-inner" style={{ maxWidth:1240, margin:"0 auto", padding:"0 28px" }}>
-          <div className="tc" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"40px 88px", alignItems:"start" }}>
+          <div className="tc" style={{ display:"grid", gridTemplateColumns:"1.05fr 0.95fr", gap:"60px 100px", alignItems:"start" }}>
             
-            {/* ROW 1: LEFT COLUMN (Biography) */}
-            <Reveal direction="left">
-              <SL text={t.about.label} th={th} />
-              <h2 className="rl sh2" style={{ fontSize:64, fontWeight:800, lineHeight:0.92, letterSpacing:"-0.01em", marginBottom:26, whiteSpace:"pre-line", color: th.text }}>{t.about.heading}</h2>
-              <p className="dm" style={{ fontSize:16, color: th.textSub, lineHeight:1.85, marginBottom:12 }}>{t.about.bio1}</p>
-              <p className="dm" style={{ fontSize:15, color: th.textMuted, lineHeight:1.85, marginBottom:0 }}>{t.about.bio2}</p>
-            </Reveal>
+            {/* LEFT COLUMN: Biography + 3 Info Cards */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 42 }}>
+              <Reveal direction="left">
+                <SL text={t.about.label} th={th} />
+                <h2 className="rl sh2" style={{ fontSize:72, fontWeight:900, lineHeight:0.92, letterSpacing:"-0.02em", marginBottom:36, color: th.text }}>
+                  {t.about.heading.split("\n").map((word, idx) => {
+                    const isLast = idx === 2;
+                    return (
+                      <span key={idx} style={{ display: "block", color: isLast ? th.accent : "inherit" }}>
+                        {word}
+                      </span>
+                    );
+                  })}
+                </h2>
+                <IntroCard t={t} th={th} isDark={isDark} />
+              </Reveal>
 
-            {/* ROW 1: RIGHT COLUMN (Software & Skills) */}
-            <Reveal delay={130} direction="right">
-              <p className="dm" style={{ fontSize:11, letterSpacing:"0.32em", color: th.accent, textTransform:"uppercase", marginBottom:18 }}>{t.about.software}</p>
-              <div style={{ display:"grid", gridTemplateColumns:"1fr", gap:12, marginBottom:42 }}>
-                {t.about.softwareList.map(s=><SWBadge key={s} name={s} th={th} />)}
-              </div>
-              <p className="dm" style={{ fontSize:11, letterSpacing:"0.32em", color: th.accent, textTransform:"uppercase", marginBottom:18 }}>{t.about.skills}</p>
-              <div style={{ display:"flex", flexWrap:"wrap", gap:9 }}>
-                {t.about.skillsList.map(s=>(
-                  <span key={s} className="dm" style={{ padding:"8px 14px", borderRadius:100, border:`1px solid ${th.accent}30`, background:`${th.accent}0d`, color: isDark?"#60a5fa":th.accent, fontSize:13, transition:"all 0.25s", cursor:"default" }}
-                    onMouseEnter={e=>{e.currentTarget.style.borderColor=th.accent+"70";e.currentTarget.style.background=th.accent+"1a";}}
-                    onMouseLeave={e=>{e.currentTarget.style.borderColor=th.accent+"30";e.currentTarget.style.background=th.accent+"0d";}}
-                  >{s}</span>
-                ))}
-              </div>
-            </Reveal>
-
-            {/* ROW 2: LEFT COLUMN (Stats grid) */}
-            <Reveal delay={100} direction="left">
-              <div className="stats-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:13, marginTop:20 }}>
-                {[[t.about.statsExp,t.about.labelExp],[t.about.statsProj,t.about.labelProj],[t.about.statsStyle,t.about.labelStyle]].map(([v,l],i)=>(
-                  <div key={i} style={{ padding:"20px 12px", borderRadius:16, textAlign:"center", border:`1px solid ${th.border}`, background: th.surface, backdropFilter:"blur(8px)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center" }}>
-                    <p className={`rl ${isDark?"sh-dark":"sh-light"}`} style={{ fontSize:20, fontWeight:800, marginBottom:5, textAlign:"center", lineHeight:1.25 }}>{v}</p>
-                    <p className="dm" style={{ fontSize:10, color: isDark?"#64748b":th.textMuted, textTransform:"uppercase", letterSpacing:"0.22em", textAlign:"center" }}>{l}</p>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-
-            {/* ROW 2: RIGHT COLUMN (Open to Work panel) */}
-            <Reveal delay={200} direction="right">
-              <div style={{ marginTop:20, padding:22, borderRadius:18, border:"1px solid rgba(74,222,128,0.2)", background: isDark?"rgba(74,222,128,0.04)":"rgba(74,222,128,0.08)", backdropFilter:"blur(8px)" }}>
-                <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:9 }}>
-                  <span style={{ width:8, height:8, borderRadius:"50%", background:"#4ade80", boxShadow:"0 0 10px #4ade80", display:"block" }} />
-                  <span className="dm" style={{ fontSize:14, fontWeight:600, color:"#4ade80" }}>{t.about.openToWork}</span>
+              <Reveal delay={100} direction="left">
+                <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                  {t.about.infoCards.map((card, idx) => {
+                    const icons = [
+                      <BookOpen style={{ width: 18, height: 18 }} />, 
+                      <Cpu style={{ width: 18, height: 18 }} />, 
+                      <Sparkles style={{ width: 18, height: 18 }} />
+                    ];
+                    return (
+                      <InfoCard key={idx} title={card.title} desc={card.desc} icon={icons[idx]} th={th} />
+                    );
+                  })}
                 </div>
-                <p className="dm" style={{ fontSize:13, color: th.textMuted, lineHeight:1.65 }}>{t.about.openToWorkDesc}</p>
-              </div>
-            </Reveal>
+              </Reveal>
+            </div>
+
+            {/* RIGHT COLUMN: Software & Specializations + Open to Work Card */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 42 }}>
+              <Reveal delay={130} direction="right">
+                <p className="dm" style={{ fontSize:11, letterSpacing:"0.32em", color: th.accent, textTransform:"uppercase", marginBottom:18 }}>{t.about.software}</p>
+                <div style={{ display:"grid", gridTemplateColumns:"1fr", gap:14, marginBottom:42 }}>
+                  {t.about.softwareList.map(s=><SWBadge key={s} name={s} th={th} t={t} />)}
+                </div>
+                
+                <p className="dm" style={{ fontSize:11, letterSpacing:"0.32em", color: th.accent, textTransform:"uppercase", marginBottom:18 }}>{t.about.skills}</p>
+                <div style={{ display:"flex", flexWrap:"wrap", gap:10, marginBottom:42 }}>
+                  {t.about.skillsList.map(s=>(
+                    <SkillPill key={s} text={s} th={th} isDark={isDark} />
+                  ))}
+                </div>
+              </Reveal>
+
+              <Reveal delay={200} direction="right">
+                <OpenToWorkCard t={t} th={th} isDark={isDark} scrollTo={scrollTo} />
+              </Reveal>
+            </div>
 
           </div>
         </div>
@@ -63,7 +261,7 @@ export default function About({ t, th, isDark, SL, Reveal }) {
   );
 }
 
-const SW_DATA = {
+export const SW_DATA = {
   "Autodesk Maya": {
     color: "#00A8E0",
     bg: "transparent",
@@ -92,32 +290,56 @@ const SW_DATA = {
   },
 };
 
-const SWBadge = ({ name, th }) => {
+const SWBadge = ({ name, th, t }) => {
   const [h, setH] = useState(false);
-  const sw = SW_DATA[name] || { color: th.accent, bg: "transparent", logo: null, desc: name };
+  const sw = SW_DATA[name] || { color: th.accent, bg: "transparent", logo: null };
+  
+  let key = "Maya";
+  if (name === "Blender") key = "Blender";
+  if (name === "After Effects") key = "AfterEffects";
+  
+  const bullets = t.about.softwareDetails?.[key] || [];
+
   return (
     <div
       onMouseEnter={()=>setH(true)}
       onMouseLeave={()=>setH(false)}
       style={{
-        display:"flex", alignItems:"center", gap:14,
-        padding:"16px 18px", borderRadius:16,
+        display:"flex", alignItems:"start", gap:16,
+        padding:"18px 20px", borderRadius:18,
         border:`1px solid ${h ? sw.color+"60" : th.border}`,
-        background: h ? sw.color+"10" : th.surface,
-        transition:"all 0.3s cubic-bezier(0.34,1.2,0.64,1)",
+        background: h ? sw.color+"0c" : th.surface,
+        transition:"all 0.3s cubic-bezier(0.16,1,0.3,1)",
         cursor:"default",
-        transform: h ? "translateY(-3px)" : "none",
-        boxShadow: h ? `0 8px 28px ${sw.color}22` : "none",
+        transform: h ? "translateY(-4px)" : "none",
+        boxShadow: h ? `0 10px 24px ${sw.color}14` : "none",
       }}
     >
-      <div style={{ flexShrink:0, width:44, height:44, borderRadius:10, overflow:"hidden", display:"flex", alignItems:"center", justifyContent:"center", background: sw.bg, boxShadow: h?`0 4px 14px ${sw.color}55`:"none", transition:"box-shadow 0.3s" }}>
-        {sw.logo}
+      <div style={{ 
+        flexShrink:0, width:44, height:44, borderRadius:10, 
+        overflow:"hidden", display:"flex", alignItems:"center", justifyContent:"center", 
+        background: sw.bg || "rgba(255,255,255,0.03)", 
+        border: `1px solid ${h ? sw.color + "aa" : "transparent"}`,
+        boxShadow: h ? `0 0 14px ${sw.color}33` : "none", 
+        transition:"all 0.3s ease" 
+      }}>
+        <div style={{ width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          {sw.logo}
+        </div>
       </div>
-      <div>
-        <div style={{ fontFamily:"DM Sans,sans-serif", fontSize:15, fontWeight:600, color: h ? sw.color : th.text, transition:"color 0.3s" }}>{name}</div>
-        <div style={{ fontFamily:"DM Sans,sans-serif", fontSize:11, color: th.textMuted, marginTop:1 }}>{sw.desc}</div>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontFamily:"DM Sans, sans-serif", fontSize:15, fontWeight:700, color: h ? sw.color : th.text, transition:"color 0.3s", marginBottom: 6 }}>
+          {name}
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+          {bullets.map((b, idx) => (
+            <div key={idx} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <span style={{ width: 4, height: 4, borderRadius: "50%", background: h ? sw.color : th.textMuted, opacity: 0.8, transition: "background 0.3s" }} />
+              <span style={{ fontFamily:"DM Sans, sans-serif", fontSize:12, color: th.textSub, lineHeight: 1.3 }}>{b}</span>
+            </div>
+          ))}
+        </div>
       </div>
-      <div style={{ marginLeft:"auto", width:6, height:6, borderRadius:"50%", background: sw.color, boxShadow: h?`0 0 10px ${sw.color}`:"none", opacity: h?1:0.4, transition:"all 0.3s" }} />
     </div>
   );
 };

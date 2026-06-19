@@ -20,7 +20,36 @@ const T = {
     nav: ["Work", "About", "Contact"],
     hero: { greeting: "Hello, I'm", name: "Umidbek Karimov", role: "Junior 3D Animator | Motion Designer", bio: "Character-driven 3D Animator & Motion Designer specializing in fluid, performance-based animations and dynamic video content. My workflow is strictly rooted in the fundamentals of motion—weight, timing, and storytelling—harnessed within Autodesk Maya and Adobe After Effects to deliver high-quality visual solutions. Open to full-time and freelance opportunities in game studios, animation productions, and creative agencies.", cta1: "View Showreel", cta2: "Contact Me", badge: "Available for hire", scroll: "Scroll" },
     work: { label: "My Portfolio", heading: "Giving Life to\n3D Characters", showreelTitle: "Production Showreel 2026", showreelMeta: "2 min 30 sec  ·  HD 1080p", projects: [{ title: "Post - Production & Commercial Motion", category: "Motion Capture · Post-Production" }, { title: "Soon..", category: "3D · CGI" }] },
-    about: { label: "About Me", heading: "Timing. Weight.\nCharacter", bio1: "I'm a Junior 3D Animator dedicated to mastering character motion. I focus on creating believable movement using Autodesk Maya.", bio2: "I enjoy the process of bringing characters to life through physics-based animation.", software: "Software", skills: "Specialisations", softwareList: ["Autodesk Maya", "Blender", "After Effects"], skillsList: ["Character Animation", "Motion Editing", "Motion Design"], statsExp: "Learning Mindset", statsProj: "Autodesk Maya", statsStyle: "Character Animation", labelExp: "Approach", labelProj: "Main Tool", labelStyle: "Focus", openToWork: "Open to Work", openToWorkDesc: "Currently looking for Junior 3D Animation roles or freelance opportunities to bring characters to life." },
+    about: { 
+      label: "About Me", 
+      heading: "Timing.\nWeight.\nCharacter", 
+      intro: {
+        line1: "I'm a Junior 3D Animator focused on character performance and believable movement.",
+        line2: "My animation workflow combines Autodesk Maya and Blender, allowing me to create and refine animations using industry-standard principles such as timing, spacing, weight and acting.",
+        line3: "I continuously study animation to improve both technical execution and storytelling through motion."
+      },
+      software: "Software", 
+      skills: "Specialisations", 
+      softwareList: ["Blender", "Autodesk Maya", "After Effects"], 
+      softwareDetails: {
+        Maya: ["Character Animation", "Acting", "Performance"],
+        Blender: ["Character Animation", "Blocking", "Polish"],
+        AfterEffects: ["Motion Design", "Editing", "Presentation"]
+      },
+      skillsList: ["Character Animation", "Acting", "Body Mechanics", "Weight & Timing", "Performance", "Motion Design"], 
+      infoCards: [
+        { title: "Learning Mindset", desc: "Always studying animation principles and improving my workflow." },
+        { title: "Maya + Blender", desc: "Using both Autodesk Maya and Blender as core animation tools." },
+        { title: "Character Performance", desc: "Focused on believable movement, acting and visual storytelling." }
+      ],
+      openToWork: {
+        title: "Available For",
+        options: ["Freelance", "Remote", "Full-Time"],
+        responseTimeLabel: "Response Time",
+        responseTime: "< 24 Hours",
+        btn: "Contact Me"
+      }
+    },
     contact: { label: "Contact", heading: "Let's Create\nSomething Great", sub: "Open to freelance, full-time roles, and creative collaborations.", resume: "Download Résumé", telegram: "Telegram", linkedin: "LinkedIn", instagram: "Instagram", gmail: "Send Email", formTitle: "Quick Message", namePh: "Your Name", emailPh: "Your Email", msgPh: "Your Message", send: "Send Message", sending: "Sending…", sent: "Message Sent ✓" },
     footer: "Crafted with obsession. All rights reserved.",
   },
@@ -28,7 +57,36 @@ const T = {
     nav: ["Работы", "Обо мне", "Контакты"],
     hero: { greeting: "Привет, я", name: "Умидбек Каримов", role: "Junior 3D Animator | Motion Designer", bio: "3D-аниматор и Motion Designer. Специализируюсь на создании плавной, выразительной анимации персонажей и динамичного видеоконтента. В работе строго опираюсь на фундаментальные принципы движения — механику тела, вес, тайминг и сторителлинг в среде Autodesk Maya и After Effects для создания качественных визуальных решений. Открыт к долгосрочному сотрудничеству (full-time) и проектной работе (freelance) с игровыми студиями, анимационными производствах и видеоагентствами.", cta1: "Смотреть Showreel", cta2: "Написать", badge: "Открыт к работе", scroll: "Вниз" },
     work: { label: "Моё портфолио", heading: "Оживляя\n3D-персонажей", showreelTitle: "Шоурил 2026", showreelMeta: "2 мин 30 сек  ·  HD 1080p", projects: [{ title: "Пост-продакшн и коммерческий моушн", category: "Захват движения · Пост-продакшн" }, { title: "Скоро...", category: "3D · CGI" }] },
-    about: { label: "Обо мне", heading: "Тайминг. Вес.\nПерсонаж.", bio1: "Я Junior 3D-аниматор, посвятивший себя изучению движения персонажей. Я фокусируюсь на создании правдоподобных движений в Autodesk Maya.", bio2: "Мне нравится процесс оживления персонажей через физически корректную анимацию.", software: "Инструменты", skills: "Специализации", softwareList: ["Autodesk Maya", "Blender", "After Effects"], skillsList: ["Character Animation", "Motion Editing", "Motion Design"], statsExp: "Learning Mindset", statsProj: "Autodesk Maya", statsStyle: "Character Animation", labelExp: "Подход", labelProj: "Инструмент", labelStyle: "Фокус", openToWork: "Открыт к работе", openToWorkDesc: "Ищу позиции Junior 3D Animator или фриланс-проекты для оживления персонажей." },
+    about: { 
+      label: "Обо мне", 
+      heading: "Тайминг.\nВес.\nПерсонаж.", 
+      intro: {
+        line1: "Я Junior 3D-аниматор, специализирующийся на игре персонажей и реалистичности их движений.",
+        line2: "Мой рабочий процесс объединяет в себе Autodesk Maya и Blender, что позволяет мне создавать и дорабатывать анимацию, опираясь на классические принципы движения: тайминг, спейсинг, вес и актерскую игру.",
+        line3: "Я постоянно изучаю анимацию, чтобы совершенствовать как техническое исполнение, так и визуальное повествование через движение."
+      },
+      software: "Инструменты", 
+      skills: "Специализации", 
+      softwareList: ["Blender", "Autodesk Maya", "After Effects"], 
+      softwareDetails: {
+        Maya: ["Анимация персонажей", "Актерская игра", "Перформанс"],
+        Blender: ["Анимация персонажей", "Блокинг", "Полировка (Polish)"],
+        AfterEffects: ["Моушн-дизайн", "Монтаж", "Презентация"]
+      },
+      skillsList: ["Анимация персонажей", "Актерская игра", "Механика тела", "Вес и тайминг", "Перформанс", "Моушн-дизайн"], 
+      infoCards: [
+        { title: "Постоянное развитие", desc: "Регулярное изучение принципов анимации и оптимизация рабочего процесса." },
+        { title: "Maya + Blender", desc: "Использование Autodesk Maya и Blender в качестве основных инструментов анимации." },
+        { title: "Анимация персонажей", desc: "Фокус на реалистичном движении, актерской игре и визуальном повествовании." }
+      ],
+      openToWork: {
+        title: "Доступен Для",
+        options: ["Фриланс", "Удаленно", "Полный День"],
+        responseTimeLabel: "Время Ответа",
+        responseTime: "< 24 Часов",
+        btn: "Связаться"
+      }
+    },
     contact: { label: "Контакты", heading: "Создадим\nЧто-то Великое", sub: "Открыт для фриланса, постоянной работы и коллабораций.", resume: "Скачать Резюме", telegram: "Telegram", linkedin: "LinkedIn", instagram: "Instagram", gmail: "Написать Email", formTitle: "Быстрое сообщение", namePh: "Ваше имя", emailPh: "Ваш Email", msgPh: "Ваше сообщение", send: "Отправить", sending: "Отправляется…", sent: "Отправлено ✓" },
     footer: "Создано с одержимостью. Все права защищены.",
   },
@@ -36,7 +94,36 @@ const T = {
     nav: ["Ishlar", "Men haqimda", "Aloqa"],
     hero: { greeting: "Salom, men", name: "Umidbek Karimov", role: "Junior 3D Animator | Motion Designer", bio: "3D Animator va Motion Designer. Qahramonlar animatsiyasi hamda dinamik video kontentlar yaratishga ixtisoslashganman. Ish jarayonimda animatsiyaning fundamental prinsiplari — tana mexanikasi, ogʻirlik, tayming va vizual hikoyachilik qonuniyatlariga qatʼiy eʼtibor qaratgan holda, Autodesk Maya va After Effects muhitida yuqori sifatli vizual yechimlar ishlab chiqaman. Geymdev studiyalari, animatsiya ishlab chiqarish jamoalari va video agentliklarda shtatdagi (full-time) hamda frilans loyihalarda ishlashga tayyorman.", cta1: "Showreelni ko'rish", cta2: "Bog'lanish", badge: "Ishga tayyor", scroll: "Pastga" },
     work: { label: "Mening ishlarim", heading: "3D qahramonlarni\njonlantirish", showreelTitle: "Showreel 2026", showreelMeta: "2 daqiqa 30 soniya  ·  HD 1080p", projects: [{ title: "Post-production va tijoriy motion", category: "Harakatni yozib olish · Post-production" }, { title: "Tez kunda...", category: "3D · CGI" }] },
-    about: { label: "Men haqimda", heading: "Vaqt, Og'irlik,\nXarakter", bio1: "Men belgi harakatini o'rganishga bag'ishlangan Junior 3D animatorman. Autodesk Maya yordamida ishonchli harakatlar yaratishga e'tibor qarataman.", bio2: "Fizikaga asoslangan animatsiya orqali qahramonlarga hayot bag'ishlash jarayonidan zavqlanaman.", software: "Dasturlar", skills: "Ixtisosliklar", softwareList: ["Autodesk Maya", "Blender", "After Effects"], skillsList: ["Character Animation", "Motion Editing", "Motion Design"], statsExp: "Learning Mindset", statsProj: "Autodesk Maya", statsStyle: "Character Animation", labelExp: "Yondashuv", labelProj: "Asosiy vosita", labelStyle: "Yo'nalish", openToWork: "Ishga tayyor", openToWorkDesc: "Junior 3D Animation yoki freelance imkoniyatlar uchun ochiqman — qahramonlarga hayot bag'ishlash." },
+    about: { 
+      label: "Men haqimda", 
+      heading: "Vaqt.\nOg'irlik.\nXarakter", 
+      intro: {
+        line1: "Men personajlar harakati va ishonchli dinamikaga e'tibor qaratuvchi Junior 3D Animatorman.",
+        line2: "Mening animatsiya ish jarayonim Autodesk Maya va Blender-ni birlashtiradi, bu esa menga vaqt (timing), masofa (spacing), og'irlik (weight) va aktyorlik (acting) kabi sanoat standartidagi prinsiplardan foydalangan holda animatsiyalarni yaratish va mukammallashtirish imkonini beradi.",
+        line3: "Men texnik mahoratni hamda harakat orqali hikoya qilishni (storytelling) yaxshilash uchun animatsiyani doimiy ravishda o'rganib boraman."
+      },
+      software: "Dasturlar", 
+      skills: "Ixtisosliklar", 
+      softwareList: ["Blender", "Autodesk Maya", "After Effects"], 
+      softwareDetails: {
+        Maya: ["Qahramonlar animatsiyasi", "Aktyorlik mahorati", "Ijro (Performance)"],
+        Blender: ["Qahramonlar animatsiyasi", "Bloking", "Sayqallash (Polish)"],
+        AfterEffects: ["Motion dizayn", "Montaj", "Taqdimot"]
+      },
+      skillsList: ["Qahramonlar animatsiyasi", "Aktyorlik mahorati", "Tana mexanikasi", "Og'irlik va tayming", "Ijro (Performance)", "Motion dizayn"], 
+      infoCards: [
+        { title: "Doimiy Rivojlanish", desc: "Animatsiya prinsiplarini doimiy o'rganish va ish jarayonini yaxshilash." },
+        { title: "Maya + Blender", desc: "Autodesk Maya va Blender dasturlaridan asosiy animatsiya vositasi sifatida foydalanish." },
+        { title: "Personajlar Dinamikasi", desc: "Ishonchli harakatlar, aktyorlik mahorati va vizual hikoyachilikka e'tibor." }
+      ],
+      openToWork: {
+        title: "Available For",
+        options: ["Freelance", "Remote", "Full-Time"],
+        responseTimeLabel: "Response Time",
+        responseTime: "< 24 Hours",
+        btn: "Contact Me"
+      }
+    },
     contact: { label: "Aloqa", heading: "Ajoyib Narsa\nBirga Yarataylik", sub: "Frilanс, to'liq kunlik ish va ijodiy hamkorlik uchun ochiqman.", resume: "Rezyume yuklab olish", telegram: "Telegram", linkedin: "LinkedIn", instagram: "Instagram", gmail: "Email yuborish", formTitle: "Tezkor xabar", namePh: "Ismingiz", emailPh: "Emailingiz", msgPh: "Xabaringiz", send: "Yuborish", sending: "Yuborilmoqda…", sent: "Yuborildi ✓" },
     footer: "Ehtiros bilan yaratilgan. Barcha huquqlar himoyalangan.",
   },
@@ -44,8 +131,8 @@ const T = {
 
 // ── Theme tokens ──────────────────────────────────────────────
 const DARK = {
-  bg:         "#0c1018",
-  bgSec:      "#0f1520",
+  bg:         "#06080c",
+  bgSec:      "#090b10",
   surface:    "rgba(255,255,255,0.03)",
   surfaceHov: "rgba(255,255,255,0.06)",
   border:     "rgba(255,255,255,0.07)",
@@ -54,7 +141,7 @@ const DARK = {
   textSub:    "#94a3b8",
   textMuted:  "#475569",
   textFaint:  "#1e293b",
-  navBg:      "rgba(12,16,24,0.88)",
+  navBg:      "rgba(6, 8, 12, 0.88)",
   cardBg:     "rgba(255,255,255,0.025)",
   inputBg:    "rgba(255,255,255,0.03)",
   inputColor: "#e2e8f0",
@@ -142,6 +229,53 @@ const SL = ({ text, th }) => (
 import { FlagEN, FlagRU, FlagUZ } from "./components/icons";
 const FLAG_COMPONENTS = { en: <FlagEN/>, ru: <FlagRU/>, uz: <FlagUZ/> };
 const LANG_LABELS = { en: "English", ru: "Русский", uz: "O'zbek" };
+
+// ── Particle Background ───────────────────────────────────────
+const ParticleBg = ({ isDark }) => {
+  if (!isDark) return null;
+  
+  const particles = React.useMemo(() => {
+    const arr = [];
+    for (let i = 0; i < 40; i++) {
+      arr.push({
+        id: i,
+        left: `${Math.random() * 100}%`,
+        bottom: `${Math.random() * 20 - 10}%`,
+        size: Math.random() * 2 + 1, // 1px to 3px
+        delay: Math.random() * 20,
+        duration: Math.random() * 20 + 20, // 20s to 40s
+        opacity: Math.random() * 0.35 + 0.15
+      });
+    }
+    return arr;
+  }, []);
+
+  return (
+    <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
+      {particles.map(p => (
+        <div
+          key={p.id}
+          className="bg-particle"
+          style={{
+            position: "absolute",
+            left: p.left,
+            bottom: p.bottom,
+            width: p.size,
+            height: p.size,
+            borderRadius: "50%",
+            background: "#ffffff",
+            opacity: p.opacity,
+            animationDelay: `${p.delay}s`,
+            animationDuration: `${p.duration}s`,
+            animationName: "floatParticle",
+            animationTimingFunction: "linear",
+            animationIterationCount: "infinite"
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 // ── Main Export ───────────────────────────────────────────────
 export default function Portfolio() {
@@ -240,6 +374,9 @@ export default function Portfolio() {
 
   return (
     <div style={{ background: th.bg, minHeight:"100vh", color: th.text, overflowX:"hidden", transition:"background 0.4s, color 0.4s" }}>
+      {/* Background Particles */}
+      <ParticleBg isDark={isDark} />
+
       {/* Right vertical decorative line */}
       <div style={{ position:"fixed", right:18, top:0, height:"100vh", width:1, background:`linear-gradient(to bottom, transparent 0%, ${th.accent}30 25%, ${th.accent}55 50%, ${th.accent}30 75%, transparent 100%)`, zIndex:0, pointerEvents:"none" }} />
       
@@ -256,13 +393,13 @@ export default function Portfolio() {
       <Navbar t={t} th={th} isDark={isDark} setIsDark={setIsDark} lang={lang} setLang={setLang} langOpen={langOpen} setLangOpen={setLangOpen} menuOpen={menuOpen} setMenuOpen={setMenuOpen} sc={sc} scrollTo={scrollTo} langRef={langRef} FLAG_COMPONENTS={FLAG_COMPONENTS} LANG_LABELS={LANG_LABELS} />
 
       {/* HERO */}
-      <Hero t={t} th={th} isDark={isDark} typed={typed} heroReady={heroReady} cur={cur} scrollTo={scrollTo} handleShowreel={handleShowreel} />
+      <Hero t={t} th={th} isDark={isDark} lang={lang} typed={typed} heroReady={heroReady} cur={cur} scrollTo={scrollTo} handleShowreel={handleShowreel} />
 
       {/* WORK */}
       <Work t={t} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} workRef={workRef} showreelRef={showreelRef} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} />
 
       {/* ABOUT */}
-      <About t={t} th={th} isDark={isDark} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} />
+      <About t={t} th={th} isDark={isDark} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} scrollTo={scrollTo} />
 
       {/* CONTACT */}
       <Contact t={t} th={th} isDark={isDark} form={form} setForm={setForm} fs={fs} send={send}  Reveal={Reveal} SL={SL} lang={lang} />

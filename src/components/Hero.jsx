@@ -374,7 +374,7 @@ export default function Hero({ t, th, isDark, lang, typed, heroReady, cur, scrol
             </div>
 
             {/* RIGHT COLUMN: PORTRAIT AND FLOATING ELEMENTS */}
-            <div style={{ display: "flex", justifyContent: "center", position: "relative", zIndex: 1 }}>
+            <div className="hero-right-col" style={{ display: "flex", justifyContent: "center", position: "relative", zIndex: 1 }}>
               <div style={{
                 position: "relative",
                 opacity: heroReady ? 1 : 0,

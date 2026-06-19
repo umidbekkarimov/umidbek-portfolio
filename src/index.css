@@ -60,6 +60,7 @@ input,textarea{font-family:"DM Sans",sans-serif;}
   #work,#about,#contact{padding:72px 0 !important;}
   .footer-inner{flex-direction:column !important;align-items:center !important;text-align:center !important;}
   .orb-wrap{opacity:0.5 !important;}
+  .hero-right-col{margin-top:0px !important;}
 }
 @media(max-width:560px){
   .thr{grid-template-columns:1fr !important;}
@@ -178,4 +179,8 @@ input,textarea{font-family:"DM Sans",sans-serif;}
     transform: translateY(-110vh) translateX(40px);
     opacity: 0;
   }
+}
+
+.hero-right-col {
+  margin-top: -55px;
 }

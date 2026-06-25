@@ -5,7 +5,7 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
   return (
     <>
       {/* ═══ WORK ═══ */}
-      <section id="work" ref={workRef} style={{ position:"relative", zIndex:1, padding:"110px 0", borderTop:`1px solid ${th.divider}` }}>
+      <section id="work" ref={workRef} style={{ position:"relative", zIndex:1, padding:"70px 0", borderTop:`1px solid ${th.divider}` }}>
         <div className="section-inner" style={{ maxWidth:1240, margin:"0 auto", padding:"0 28px" }}>
           <Reveal direction="left">
             <SL text={t.work.label} th={th} />
@@ -16,12 +16,12 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
           {/* Interactive Fanned Projects Card Stack */}
           <div className="projects-card-stack" style={{
             position: "relative",
-            minHeight: 480,
+            minHeight: 380,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            marginTop: 50,
-            marginBottom: 50,
+            marginTop: 40,
+            marginBottom: 20,
             width: "100%"
           }}>
             {t.work.projects.map((p,i)=>{
@@ -33,7 +33,9 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
                   style={{
                     position: "absolute",
                     transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
-                    zIndex: playing ? 100 : (i + 1)
+                    zIndex: playing ? 100 : (i + 1),
+                    width: "380px",
+                    maxWidth: "90%"
                   }}
                 >
                   <PCard title={p.title} category={p.category} videoUrl={p.video} poster={p.poster} idx={i} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} />

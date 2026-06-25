@@ -461,3 +461,152 @@ input,textarea{font-family:"DM Sans",sans-serif;}
     gap: 16px !important;
   }
 }
+
+/* Split Transition Stages */
+.hero-stage-container {
+  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-names-wrap, .hero-portrait-card-wrap {
+  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Stage 1 and 2: split layout styles */
+.hero-stage-container.stage-1 .hero-names-wrap,
+.hero-stage-container.stage-2 .hero-names-wrap {
+  transform: scale(0.62) translate(-360px, -110px);
+  align-items: flex-start !important;
+}
+.hero-stage-container.stage-1 .hero-portrait-card-wrap,
+.hero-stage-container.stage-2 .hero-portrait-card-wrap {
+  transform: scale(0.45) translate(460px, -140px);
+}
+
+@media(max-width: 1024px) {
+  .hero-stage-container.stage-1 .hero-names-wrap,
+  .hero-stage-container.stage-2 .hero-names-wrap {
+    transform: scale(0.58) translate(-180px, -120px);
+  }
+  .hero-stage-container.stage-1 .hero-portrait-card-wrap,
+  .hero-stage-container.stage-2 .hero-portrait-card-wrap {
+    transform: scale(0.4) translate(250px, -155px);
+  }
+}
+@media(max-width: 768px) {
+  .hero-stage-container.stage-1 .hero-names-wrap,
+  .hero-stage-container.stage-2 .hero-names-wrap {
+    transform: scale(0.5) translate(-40px, -130px);
+  }
+  .hero-stage-container.stage-1 .hero-portrait-card-wrap,
+  .hero-stage-container.stage-2 .hero-portrait-card-wrap {
+    transform: scale(0.35) translate(90px, -170px);
+  }
+}
+@media(max-width: 560px) {
+  .hero-stage-container.stage-1 .hero-names-wrap,
+  .hero-stage-container.stage-2 .hero-names-wrap {
+    transform: scale(0.45) translate(0px, -150px);
+    align-items: center !important;
+  }
+  .hero-stage-container.stage-1 .hero-portrait-card-wrap,
+  .hero-stage-container.stage-2 .hero-portrait-card-wrap {
+    display: none !important;
+  }
+}
+
+/* Projects Card Stack (Fanning Effect) */
+.projects-card-stack .stack-card {
+  position: absolute;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center bottom;
+}
+
+/* Stack default rotations */
+.projects-card-stack .stack-card.card-index-0 {
+  transform: rotate(-6deg) translate(-25px, 12px);
+}
+.projects-card-stack .stack-card.card-index-1 {
+  transform: rotate(-2deg) translate(-8px, 4px);
+}
+.projects-card-stack .stack-card.card-index-2 {
+  transform: rotate(2deg) translate(8px, 4px);
+}
+.projects-card-stack .stack-card.card-index-3 {
+  transform: rotate(6deg) translate(25px, 12px);
+}
+
+/* Fan out on hover */
+.projects-card-stack:hover .stack-card.card-index-0:not(.active-playing) {
+  transform: rotate(-14deg) translate(-270px, -8px);
+}
+.projects-card-stack:hover .stack-card.card-index-1:not(.active-playing) {
+  transform: rotate(-4deg) translate(-90px, 4px);
+}
+.projects-card-stack:hover .stack-card.card-index-2:not(.active-playing) {
+  transform: rotate(4deg) translate(90px, 4px);
+}
+.projects-card-stack:hover .stack-card.card-index-3:not(.active-playing) {
+  transform: rotate(14deg) translate(270px, -8px);
+}
+
+/* Active playing card */
+.projects-card-stack .stack-card.active-playing {
+  transform: rotate(0deg) translate(0px, 0px) scale(1.06) !important;
+  z-index: 100 !important;
+}
+
+.projects-card-stack .stack-card:hover:not(.active-playing) {
+  z-index: 40;
+  filter: brightness(1.08);
+}
+
+@media(max-width: 900px) {
+  .projects-card-stack {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px !important;
+    min-height: auto !important;
+  }
+  .projects-card-stack .stack-card {
+    position: relative !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 500px !important;
+  }
+  .projects-card-stack:hover .stack-card {
+    transform: none !important;
+  }
+}
+
+/* Showreel Grid & Layout Improvements */
+.showreel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .showreel-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.features-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding: 24px 32px;
+  border-radius: 18px;
+  margin-top: 40px;
+  width: 100%;
+  transition: all 0.3s;
+}
+@media (max-width: 990px) {
+  .features-bar {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+}
+

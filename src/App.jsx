@@ -315,6 +315,17 @@ export default function Portfolio() {
   const [loading, setLoading] = useState(true);
   const [fade, setFade] = useState(false);
   const scrollY = useScrollY();
+  const [stage, setStage] = useState(0);
+
+  useEffect(() => {
+    if (scrollY > 350) {
+      setStage(2);
+    } else if (scrollY > 30) {
+      setStage(1);
+    } else {
+      setStage(0);
+    }
+  }, [scrollY]);
 
   useEffect(() => {
     const fadeTimer = setTimeout(() => setFade(true), 2200);
@@ -555,10 +566,10 @@ export default function Portfolio() {
         <Navbar t={t} th={th} isDark={isDark} setIsDark={setIsDark} lang={lang} setLang={setLang} langOpen={langOpen} setLangOpen={setLangOpen} menuOpen={menuOpen} setMenuOpen={setMenuOpen} sc={sc} scrollTo={scrollTo} langRef={langRef} FLAG_COMPONENTS={FLAG_COMPONENTS} LANG_LABELS={LANG_LABELS} />
 
         {/* HERO */}
-        <Hero t={t} th={th} isDark={isDark} lang={lang} typed={typed} heroReady={heroReady} cur={cur} scrollTo={scrollTo} handleShowreel={handleShowreel} />
+        <Hero t={t} th={th} isDark={isDark} lang={lang} typed={typed} heroReady={heroReady} cur={cur} scrollTo={scrollTo} handleShowreel={handleShowreel} stage={stage} setStage={setStage} />
 
         {/* WORK */}
-        <Work t={t} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} workRef={workRef} showreelRef={showreelRef} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} />
+        <Work t={t} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} workRef={workRef} showreelRef={showreelRef} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} stage={stage} setStage={setStage} />
 
         {/* ABOUT */}
         <About t={t} th={th} isDark={isDark} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} scrollTo={scrollTo} />

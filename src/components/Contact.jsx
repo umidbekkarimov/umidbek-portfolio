@@ -17,7 +17,7 @@ export default function Contact({ t, th, isDark, form, setForm, fs, send, Reveal
           <div className="tc contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:80 }}>
             <Reveal delay={100} direction="left">
               <div className="contact-panels" style={{ display:"flex", flexDirection:"column", gap:10 }}>
-                <CPanel label={t.contact.resume} icon={<Download style={{width:20,height:20}}/>} color={th.accent} isBtn onClick={() => { const alertMsg = { en: "Resume is currently being updated and will be available shortly. Thank you!", ru: "Резюме в настоящее время обновляется и скоро будет доступно. Спасибо!", uz: "Rezyume hozirda yangilanmoqda va tez orada tayyor bo'ladi. Rahmat!" }[lang || "en"]; alert(alertMsg); }} th={th} />
+                <CPanel label={t.contact.resume} icon={<Download style={{width:20,height:20}}/>} color={th.accent} href="/Umidbek-Karimov-CV.pdf" th={th} />
                 <CPanel label={t.contact.linkedin} icon={<FaLinkedin style={{width:20,height:20}}/>} color="#0A66C2" href="https://www.linkedin.com/in/umidbek-karimov-564581344" th={th} />
                 <CPanel label={t.contact.telegram} icon={<TGIcon/>} color="#2AABEE" href="https://t.me/Umidbek_Karimovv" th={th} />
                 <CPanel label={t.contact.instagram} icon={<FaInstagram style={{width:20,height:20}}/>} color="#E1306C" href="https://instagram.com/marc.3d" th={th} />

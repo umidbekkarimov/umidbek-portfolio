@@ -16,7 +16,7 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
           <Reveal delay={120} direction="up"><Showreel title={t.work.showreelTitle} meta={t.work.showreelMeta} showVideo={showVideo} onToggle={()=>setActiveVideo(activeVideo === "showreel" ? null : "showreel")} th={th} isDark={isDark} showreelRef={showreelRef} /></Reveal>
           <div className="thr" style={{ display:"grid", gridTemplateColumns:"repeat(2,1fr)", gap:15, marginTop:15 }}>
             {t.work.projects.map((p,i)=>(
-              <Reveal key={i} delay={i*120} direction="up"><PCard title={p.title} category={p.category} idx={i} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} /></Reveal>
+              <Reveal key={i} delay={i*120} direction="up"><PCard title={p.title} category={p.category} videoUrl={p.video} poster={p.poster} idx={i} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} /></Reveal>
             ))}
           </div>
         </div>
@@ -34,7 +34,7 @@ const LIGHT_BGPAIRS = [["#e0f2fe", "#f0f9ff"], ["#dcfce7", "#f0fdf4"], ["#f3e8ff
 
 const CARD_ACCENTS = ["#3b82f6","#22c55e","#a855f7"];
 
-const PCard = ({ title, category, idx, th, isDark, activeVideo, setActiveVideo }) => {
+const PCard = ({ title, category, videoUrl, poster, idx, th, isDark, activeVideo, setActiveVideo }) => {
   const [h, setH] = useState(false);
   const playing = activeVideo === `project-${idx}`;
   const [paused, setPaused] = useState(false);
@@ -161,7 +161,8 @@ const PCard = ({ title, category, idx, th, isDark, activeVideo, setActiveVideo }
       {/* Video — ALWAYS pointerEvents:none */}
       <video
         ref={videoRef}
-        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        src={videoUrl}
+        poster={poster}
         muted={muted}
         playsInline
         preload={playing ? "auto" : "none"}
@@ -438,6 +439,7 @@ const Showreel = ({ title, meta, showVideo, onToggle, th, isDark, showreelRef })
       <video
         ref={videoRef}
         src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        poster="/showreel-poster.png"
         autoPlay={showVideo}
         muted={muted}
         playsInline

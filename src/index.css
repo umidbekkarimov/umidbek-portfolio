@@ -184,3 +184,229 @@ input,textarea{font-family:"DM Sans",sans-serif;}
 .hero-right-col {
   margin-top: -55px;
 }
+
+/* Cinematic Logo Preloader */
+.preloader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #050816;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s ease;
+  overflow: hidden;
+}
+
+.preloader-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.preloader-svg-new {
+  width: 320px;
+  height: 213px;
+  max-width: 90vw;
+  z-index: 2;
+  /* Stage 6: Faqat juda nozik premium glow */
+  filter: drop-shadow(0 0 12px rgba(79, 124, 255, 0.12)) drop-shadow(0 0 24px rgba(139, 92, 246, 0.06));
+}
+
+/* Ambient Background Glow */
+.preloader-glow-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 124, 255, 0.08) 0%, rgba(139, 92, 246, 0.03) 60%, transparent 100%);
+  filter: blur(65px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 1;
+}
+
+/* Logo groups - Monochromatic during entry stages */
+.logo-u-left, .logo-u-right, .logo-u-bottom, .logo-k-upper, .logo-k-lower {
+  transform-origin: center;
+  transform-box: fill-box;
+  opacity: 0;
+  filter: grayscale(1) brightness(1.75);
+}
+
+/* Stage 2: U Left (slides down) & U Right (slides up) - (0.2s - 0.7s) */
+.logo-u-left {
+  transform: translateY(-100px);
+  animation: slideInY 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.2s, colorizeGradient 0.3s ease-out forwards 1.6s;
+}
+
+.logo-u-right {
+  transform: translateY(100px);
+  animation: slideInY 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.2s, colorizeGradient 0.3s ease-out forwards 1.6s;
+}
+
+@keyframes slideInY {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stage 2.5: U Bottom curve scale-up (0.4s - 0.9s) */
+.logo-u-bottom {
+  transform: scaleY(0) scaleX(0.8);
+  animation: scaleInBottom 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.4s, colorizeGradient 0.3s ease-out forwards 1.6s;
+}
+
+@keyframes scaleInBottom {
+  to {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1);
+  }
+}
+
+/* Stage 3: K Upper diagonal unfolds from joint (0.9s - 1.3s) */
+.logo-k-upper {
+  transform: translateX(-60px) translateY(60px) scale(0) rotate(-15deg);
+  transform-origin: bottom left;
+  animation: unfoldUpper 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.9s, colorizeGradient 0.3s ease-out forwards 1.6s;
+}
+
+@keyframes unfoldUpper {
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+/* Stage 4: K Lower diagonal unfolds from joint (1.2s - 1.6s) */
+.logo-k-lower {
+  transform: translateX(-60px) translateY(-60px) scale(0) rotate(15deg);
+  transform-origin: top left;
+  animation: unfoldLower 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards 1.2s, colorizeGradient 0.3s ease-out forwards 1.6s;
+}
+
+@keyframes unfoldLower {
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+/* Stage 5: Soft transition to full gradient colors (1.6s - 1.9s) */
+@keyframes colorizeGradient {
+  to {
+    filter: grayscale(0) brightness(1);
+  }
+}
+
+/* Logo Preloader Typography */
+.preloader-text-wrap {
+  margin-top: 30px;
+  text-align: center;
+  z-index: 2;
+}
+
+.preloader-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.4em;
+  color: #F8FAFC;
+  margin: 0 0 8px 0;
+  opacity: 0;
+  transform: translateY(12px);
+  filter: blur(4px);
+  animation: preloaderTextReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 1.7s;
+  text-indent: 0.4em;
+}
+
+.preloader-subtitle {
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5em;
+  color: #94a3b8;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  filter: blur(2px);
+  animation: preloaderTextReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 1.9s;
+  text-indent: 0.5em;
+}
+
+@keyframes preloaderTextReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* Hover Animation on Navbar Logo */
+.navbar-logo-btn {
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo-btn:hover {
+  transform: scale(1.04);
+}
+
+.navbar-logo-btn:hover svg {
+  filter: drop-shadow(0 0 10px rgba(79, 124, 255, 0.35)) drop-shadow(0 0 20px rgba(139, 92, 246, 0.2)) !important;
+}
+
+/* Navbar logo path hover gradient shift */
+.navbar-logo-btn svg path {
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1), filter 450ms ease;
+}
+
+.navbar-logo-btn:hover svg path {
+  filter: brightness(1.1) saturate(1.15);
+}
+
+/* Page content animation & Hero Entrance */
+.content-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.content-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.content-hidden .navbar-logo-btn {
+  opacity: 0;
+  transform: scale(0.8);
+  filter: blur(12px);
+}
+
+.content-visible .navbar-logo-btn {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0px);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), 
+              transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), 
+              filter 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}

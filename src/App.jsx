@@ -5,6 +5,7 @@ import Work from "./components/Work";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import { useScrollY, useInView, useTypewriter } from "./hooks/useScroll";
+import logoClassified from "./assets/uk_logo_classified_v2.json";
 import "./index.css";
 // ── EmailJS sozlamalari — emailjs.com da hisob oching ────────
 // 1. emailjs.com ga kiring → Email Services → Service ID
@@ -296,12 +297,25 @@ export default function Portfolio() {
   const [fs, setFs] = useState("idle");
   const [cur, setCur] = useState(true);
   const [heroReady, setHeroReady] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [fade, setFade] = useState(false);
   const scrollY = useScrollY();
 
   useEffect(() => {
-    const timer = setTimeout(() => setHeroReady(true), 80);
-    return () => clearTimeout(timer);
+    const fadeTimer = setTimeout(() => setFade(true), 2200);
+    const loadTimer = setTimeout(() => setLoading(false), 2700);
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(loadTimer);
+    };
   }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      const timer = setTimeout(() => setHeroReady(true), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
   const t = T[lang];
   const th = isDark ? DARK : LIGHT;
   const typed = useTypewriter(t.hero.role, 65);
@@ -374,46 +388,180 @@ export default function Portfolio() {
 
   return (
     <div style={{ background: th.bg, minHeight:"100vh", color: th.text, overflowX:"hidden", transition:"background 0.4s, color 0.4s" }}>
-      {/* Background Particles */}
-      <ParticleBg isDark={isDark} />
-
-      {/* Right vertical decorative line */}
-      <div style={{ position:"fixed", right:18, top:0, height:"100vh", width:1, background:`linear-gradient(to bottom, transparent 0%, ${th.accent}30 25%, ${th.accent}55 50%, ${th.accent}30 75%, transparent 100%)`, zIndex:0, pointerEvents:"none" }} />
       
+      {/* Global SVG Definitions (always mounted for components to use) */}
+      <svg style={{ position: "absolute", width: 0, height: 0, overflow: "hidden" }} aria-hidden="true">
+        <defs>
+          {/* U Fill Gradient */}
+          <linearGradient id="u-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#00d2ff" />
+            <stop offset="60%" stopColor="#0055ff" />
+            <stop offset="100%" stopColor="#0011bb" />
+          </linearGradient>
 
-      {/* ORBS */}
-      <div className="orb-wrap" style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden", transition:"opacity 0.5s" }}>
-        <div style={{ position:"absolute", top:"-10%", left:"18%", width:700, height:700, borderRadius:"50%", background:"#3b82f6", filter:"blur(160px)", opacity: th.orbOp }} />
-        <div style={{ position:"absolute", top:"58%", right:"-6%", width:500, height:500, borderRadius:"50%", background:"#6366f1", filter:"blur(140px)", opacity: th.orbOp*0.75 }} />
-        <div style={{ position:"absolute", top:"33%", left:"-6%", width:400, height:400, borderRadius:"50%", background:"#0ea5e9", filter:"blur(130px)", opacity: th.orbOp*0.75 }} />
-      </div>
+          {/* U Outline Gradient */}
+          <linearGradient id="u-outline-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#00f0ff" />
+            <stop offset="100%" stopColor="#0044ff" />
+          </linearGradient>
+          
+          {/* K1 Fill Gradient */}
+          <linearGradient id="k-grad-1" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#0052ff" />
+            <stop offset="50%" stopColor="#7a00ff" />
+            <stop offset="100%" stopColor="#d600ff" />
+          </linearGradient>
 
-      
-      {/* NAV */}
-      <Navbar t={t} th={th} isDark={isDark} setIsDark={setIsDark} lang={lang} setLang={setLang} langOpen={langOpen} setLangOpen={setLangOpen} menuOpen={menuOpen} setMenuOpen={setMenuOpen} sc={sc} scrollTo={scrollTo} langRef={langRef} FLAG_COMPONENTS={FLAG_COMPONENTS} LANG_LABELS={LANG_LABELS} />
+          {/* K1 Outline Gradient */}
+          <linearGradient id="k-outline-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#00a2ff" />
+            <stop offset="50%" stopColor="#a000ff" />
+            <stop offset="100%" stopColor="#ff00f0" />
+          </linearGradient>
 
-      {/* HERO */}
-      <Hero t={t} th={th} isDark={isDark} lang={lang} typed={typed} heroReady={heroReady} cur={cur} scrollTo={scrollTo} handleShowreel={handleShowreel} />
+          {/* K2 Fill Gradient */}
+          <linearGradient id="k-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#7a00ff" />
+            <stop offset="100%" stopColor="#4600a0" />
+          </linearGradient>
 
-      {/* WORK */}
-      <Work t={t} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} workRef={workRef} showreelRef={showreelRef} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} />
+          {/* K2 Outline Gradient */}
+          <linearGradient id="k-outline-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#a000ff" />
+            <stop offset="100%" stopColor="#5000c0" />
+          </linearGradient>
 
-      {/* ABOUT */}
-      <About t={t} th={th} isDark={isDark} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} scrollTo={scrollTo} />
+          {/* Shadow effect on the crossover */}
+          <filter id="crossover-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="-2" dy="3" stdDeviation="3" floodColor="#000" floodOpacity="0.8"/>
+          </filter>
+        </defs>
+      </svg>
 
-      {/* CONTACT */}
-      <Contact t={t} th={th} isDark={isDark} form={form} setForm={setForm} fs={fs} send={send}  Reveal={Reveal} SL={SL} lang={lang} />
+      {/* Preloader Overlay */}
+      {loading && (
+        <div className={`preloader-overlay ${fade ? "fade-out" : ""}`}>
+          {/* Ambient Background Glow */}
+          <div className="preloader-glow-bg" />
 
-      {/* FOOTER */}
-      <footer style={{ position:"relative", zIndex:1, borderTop:`1px solid ${th.divider}`, padding:"34px 28px" }}>
-        <div className="footer-inner" style={{ maxWidth:1240, margin:"0 auto", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:12 }}>
-          <div>
-            <span className="dm" style={{ fontSize:14, color: th.textFaint }}>Umidbek Karimov</span>
+          <div className="preloader-logo-container">
+            <svg 
+              className="preloader-svg-new" 
+              viewBox="0 0 1536 1024" 
+              fill="none" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* ── Stage 2: U Left ── */}
+              <g className="logo-u-left">
+                {logoClassified.u_left.map((p, i) => (
+                  <path
+                    key={i}
+                    d={p.d}
+                    fill={p.fill}
+                    transform={p.transform}
+                  />
+                ))}
+              </g>
+
+              {/* ── Stage 2: U Right ── */}
+              <g className="logo-u-right">
+                {logoClassified.u_right.map((p, i) => (
+                  <path
+                    key={i}
+                    d={p.d}
+                    fill={p.fill}
+                    transform={p.transform}
+                  />
+                ))}
+              </g>
+
+              {/* ── Stage 2: U Bottom ── */}
+              <g className="logo-u-bottom">
+                {logoClassified.u_bottom.map((p, i) => (
+                  <path
+                    key={i}
+                    d={p.d}
+                    fill={p.fill}
+                    transform={p.transform}
+                  />
+                ))}
+              </g>
+
+              {/* ── Stage 3: K Upper ── */}
+              <g className="logo-k-upper">
+                {logoClassified.k_upper.map((p, i) => (
+                  <path
+                    key={i}
+                    d={p.d}
+                    fill={p.fill}
+                    transform={p.transform}
+                  />
+                ))}
+              </g>
+
+              {/* ── Stage 4: K Lower ── */}
+              <g className="logo-k-lower">
+                {logoClassified.k_lower.map((p, i) => (
+                  <path
+                    key={i}
+                    d={p.d}
+                    fill={p.fill}
+                    transform={p.transform}
+                  />
+                ))}
+              </g>
+            </svg>
+            <div className="preloader-text-wrap">
+              <h1 className="preloader-title">UMIDBEK KARIMOV</h1>
+              <p className="preloader-subtitle">3D ANIMATION & MOTION DESIGN</p>
+            </div>
           </div>
-          <p className="dm" style={{ fontSize:12, color: th.textFaint }}>{t.footer}</p>
-          <p className="dm" style={{ fontSize:11, color: th.textFaint }}>© {new Date().getFullYear()}</p>
         </div>
-      </footer>
+      )}
+
+      {/* Main Website Wrapper with Entrance Transition */}
+      <div className={loading ? "content-hidden" : "content-visible"}>
+        {/* Background Particles */}
+        <ParticleBg isDark={isDark} />
+
+        {/* Right vertical decorative line */}
+        <div style={{ position:"fixed", right:18, top:0, height:"100vh", width:1, background:`linear-gradient(to bottom, transparent 0%, ${th.accent}30 25%, ${th.accent}55 50%, ${th.accent}30 75%, transparent 100%)`, zIndex:0, pointerEvents:"none" }} />
+        
+
+        {/* ORBS */}
+        <div className="orb-wrap" style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden", transition:"opacity 0.5s" }}>
+          <div style={{ position:"absolute", top:"-10%", left:"18%", width:700, height:700, borderRadius:"50%", background:"#3b82f6", filter:"blur(160px)", opacity: th.orbOp }} />
+          <div style={{ position:"absolute", top:"58%", right:"-6%", width:500, height:500, borderRadius:"50%", background:"#6366f1", filter:"blur(140px)", opacity: th.orbOp*0.75 }} />
+          <div style={{ position:"absolute", top:"33%", left:"-6%", width:400, height:400, borderRadius:"50%", background:"#0ea5e9", filter:"blur(130px)", opacity: th.orbOp*0.75 }} />
+        </div>
+
+        
+        {/* NAV */}
+        <Navbar t={t} th={th} isDark={isDark} setIsDark={setIsDark} lang={lang} setLang={setLang} langOpen={langOpen} setLangOpen={setLangOpen} menuOpen={menuOpen} setMenuOpen={setMenuOpen} sc={sc} scrollTo={scrollTo} langRef={langRef} FLAG_COMPONENTS={FLAG_COMPONENTS} LANG_LABELS={LANG_LABELS} />
+
+        {/* HERO */}
+        <Hero t={t} th={th} isDark={isDark} lang={lang} typed={typed} heroReady={heroReady} cur={cur} scrollTo={scrollTo} handleShowreel={handleShowreel} />
+
+        {/* WORK */}
+        <Work t={t} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} workRef={workRef} showreelRef={showreelRef} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} />
+
+        {/* ABOUT */}
+        <About t={t} th={th} isDark={isDark} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} scrollTo={scrollTo} />
+
+        {/* CONTACT */}
+        <Contact t={t} th={th} isDark={isDark} form={form} setForm={setForm} fs={fs} send={send}  Reveal={Reveal} SL={SL} lang={lang} />
+
+        {/* FOOTER */}
+        <footer style={{ position:"relative", zIndex:1, borderTop:`1px solid ${th.divider}`, padding:"34px 28px" }}>
+          <div className="footer-inner" style={{ maxWidth:1240, margin:"0 auto", display:"flex", alignItems: "center", justifyContent:"space-between", flexWrap:"wrap", gap:12 }}>
+            <div>
+              <span className="dm" style={{ fontSize:14, color: th.textFaint }}>Umidbek Karimov</span>
+            </div>
+            <p className="dm" style={{ fontSize:12, color: th.textFaint }}>{t.footer}</p>
+            <p className="dm" style={{ fontSize:11, color: th.textFaint }}>© {new Date().getFullYear()}</p>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }

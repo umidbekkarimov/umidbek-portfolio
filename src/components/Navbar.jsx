@@ -1,5 +1,6 @@
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import logoPaths from "../assets/uk_logo_paths.json";
 
 export default function Navbar({ t, th, isDark, setIsDark, lang, setLang, langOpen, setLangOpen, menuOpen, setMenuOpen, sc, scrollTo, langRef, FLAG_COMPONENTS, LANG_LABELS }) {
   return (
@@ -7,7 +8,41 @@ export default function Navbar({ t, th, isDark, setIsDark, lang, setLang, langOp
       {/* NAV */}
       <nav style={{ position:"fixed", top:0, left:0, right:0, zIndex:100, backdropFilter: sc?"blur(24px) saturate(180%)":"none", background: sc?th.navBg:"transparent", borderBottom: sc?`1px solid ${th.divider}`:"none", transition:"all 0.4s ease" }}>
         <div style={{ maxWidth:1240, margin:"0 auto", padding:"0 28px", height:66, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-          <div style={{ width:40 }} />
+          {/* Logo / Name */}
+          <div>
+            <button 
+              onClick={() => scrollTo("hero")} 
+              className="navbar-logo-btn"
+              style={{ 
+                background: "none", 
+                border: "none", 
+                cursor: "pointer", 
+                padding: 0,
+                display: "flex",
+                alignItems: "center"
+              }}
+            >
+              <svg 
+                width="54" 
+                height="36" 
+                viewBox="0 0 1536 1024" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ 
+                  filter: "drop-shadow(0 0 3px rgba(44, 71, 242, 0.25))"
+                }}
+              >
+                {logoPaths.slice(1).map((p, i) => (
+                  <path
+                    key={i}
+                    d={p.d}
+                    fill={p.fill}
+                    transform={p.transform}
+                  />
+                ))}
+              </svg>
+            </button>
+          </div>
 
           {/* Nav links */}
           <div className="nl" style={{ display:"flex", gap:40 }}>

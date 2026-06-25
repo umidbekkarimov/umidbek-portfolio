@@ -347,6 +347,8 @@ const PCard = ({ title, category, videoUrl, poster, idx, th, isDark, activeVideo
 };
 
 const VideoCard = ({
+  videoId,
+  poster,
   label,
   title,
   subtitle,
@@ -367,26 +369,51 @@ const VideoCard = ({
       style={{
         position: "relative",
         width: "100%",
+        aspectRatio: "16/9.5",
         borderRadius: 18,
         overflow: "hidden",
         border: `1px solid ${hov ? "rgba(59,130,246,0.45)" : th.border}`,
-        background: isDark 
-          ? "rgba(255, 255, 255, 0.015)" 
-          : "rgba(255, 255, 255, 0.65)",
-        backdropFilter: "blur(12px)",
         boxShadow: isDark 
-          ? (hov ? "0 0 40px rgba(59,130,246,0.08), 0 20px 40px rgba(0,0,0,0.25)" : "0 8px 24px rgba(0,0,0,0.15)") 
-          : (hov ? "0 0 30px rgba(37,99,235,0.12), 0 12px 24px rgba(37,99,235,0.06)" : "0 4px 12px rgba(37,99,235,0.03)"),
+          ? (hov ? "0 0 50px rgba(59,130,246,0.12), 0 20px 40px rgba(0,0,0,0.3)" : "0 10px 30px rgba(0,0,0,0.2)") 
+          : (hov ? "0 0 40px rgba(59,130,246,0.15), 0 15px 30px rgba(37,99,235,0.1)" : "0 6px 20px rgba(37,99,235,0.06)"),
         transition: "all 0.4s ease",
-        padding: isMain ? "40px 35px" : "32px 28px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        minHeight: isMain ? 240 : 200
+        cursor: "pointer"
       }}
     >
-      {/* Top row */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+      {/* Background Poster */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        backgroundImage: `url(${poster})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        zIndex: 0,
+        transform: hov ? "scale(1.03)" : "scale(1)",
+        transition: "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)"
+      }} />
+
+      {/* Dark overlay */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        background: hov 
+          ? "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.4) 100%)"
+          : "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.3) 100%)",
+        zIndex: 1,
+        transition: "all 0.4s ease"
+      }} />
+
+      {/* Top Bar Overlay */}
+      <div style={{
+        position: "absolute",
+        top: 20,
+        left: 20,
+        right: 20,
+        zIndex: 3,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
+      }}>
         {/* Label */}
         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
           <span style={{
@@ -401,8 +428,9 @@ const VideoCard = ({
             fontSize: 10,
             fontWeight: 700,
             letterSpacing: "0.15em",
-            color: isDark ? "#94a3b8" : th.textSub,
-            textTransform: "uppercase"
+            color: "#fff",
+            textTransform: "uppercase",
+            textShadow: "0 1px 4px rgba(0,0,0,0.6)"
           }}>
             {label}
           </span>
@@ -411,13 +439,13 @@ const VideoCard = ({
         {/* Top Right Badges/Links */}
         {isMain ? (
           <div style={{
-            background: isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.05)",
-            border: `1px solid ${th.border}`,
+            background: "rgba(0, 0, 0, 0.65)",
+            border: "1px solid rgba(255, 255, 255, 0.15)",
             borderRadius: 4,
             padding: "4px 8px",
             fontSize: 10,
             fontWeight: 800,
-            color: th.textSub,
+            color: "#fff",
             letterSpacing: "0.08em"
           }}>
             4K ULTRA HD
@@ -428,71 +456,193 @@ const VideoCard = ({
               href={externalLink} 
               target="_blank" 
               rel="noopener noreferrer" 
+              onClick={e => e.stopPropagation()}
               style={{
-                width: 32,
-                height: 32,
+                width: 34,
+                height: 34,
                 borderRadius: "50%",
-                background: isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)",
-                border: `1px solid ${th.border}`,
+                background: "rgba(0,0,0,0.5)",
+                border: "1px solid rgba(255,255,255,0.15)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: th.textSub,
+                color: "#94a3b8",
                 transition: "all 0.2s"
               }}
-              onMouseEnter={e => { e.currentTarget.style.color = th.accent; e.currentTarget.style.borderColor = th.accent; }}
-              onMouseLeave={e => { e.currentTarget.style.color = th.textSub; e.currentTarget.style.borderColor = th.border; }}
+              onMouseEnter={e => { e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "#94a3b8"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"; }}
             >
-              <ExternalLink style={{ width: 13, height: 13 }} />
+              <ExternalLink style={{ width: 14, height: 14 }} />
             </a>
           )
         )}
       </div>
 
-      {/* Middle row: Text Content */}
-      <div style={{ flex: 1, marginBottom: 20 }}>
-        <h3 style={{
-          fontFamily: "Inter, sans-serif",
-          fontSize: isMain ? "clamp(22px, 3.5vw, 28px)" : "clamp(18px, 2.2vw, 22px)",
-          fontWeight: 800,
-          color: th.text,
-          lineHeight: 1.25,
-          marginBottom: 10,
-          letterSpacing: "-0.01em"
+      {/* Center Play Overlay (when not Main card) */}
+      {!isMain && (
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 3,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
         }}>
-          {title}
-        </h3>
-        <p style={{
-          fontFamily: "Inter, sans-serif",
-          fontSize: isMain ? 14 : 13,
-          fontWeight: 500,
-          color: th.textSub,
-          lineHeight: 1.6,
-          maxWidth: isMain ? 700 : "100%",
-          margin: 0
-        }}>
-          {subtitle}
-        </p>
-      </div>
-
-      {/* Bottom row: Badges/Durations */}
-      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, color: th.textSub, fontSize: 12, fontWeight: 600 }}>
-          <Clock style={{ width: 14, height: 14 }} />
-          {duration}
-        </div>
-        {isMain && (
           <div style={{
-            border: `1px solid ${th.border}`,
-            borderRadius: 4,
-            padding: "2px 6px",
-            fontSize: 10,
-            fontWeight: 800,
-            color: th.textSub
+            width: 52,
+            height: 52,
+            borderRadius: "50%",
+            background: "rgba(0,0,0,0.6)",
+            border: "1px solid rgba(255,255,255,0.2)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: hov ? "0 0 20px rgba(59,130,246,0.3)" : "none",
+            transform: hov ? "scale(1.1)" : "scale(1)",
+            transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
           }}>
-            HD 1080p
+            <Play style={{ width: 16, height: 16, color: "#fff", marginLeft: 2 }} fill="white" />
           </div>
-        )}
+        </div>
+      )}
+
+      {/* Bottom Content */}
+      <div style={{
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: isMain ? "40px 30px 24px" : "30px 20px 20px",
+        zIndex: 4,
+        background: "linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 40%, transparent 100%)",
+        pointerEvents: "none"
+      }}>
+        <div style={{ transform: hov && !isMain ? "translateY(-6px)" : "translateY(0)", transition: "transform 0.4s ease" }}>
+          <h3 style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: isMain ? "clamp(24px, 4vw, 36px)" : "clamp(18px, 2.5vw, 22px)",
+            fontWeight: 800,
+            color: "#fff",
+            lineHeight: 1.15,
+            marginBottom: 8,
+            letterSpacing: "-0.02em"
+          }}>
+            {title}
+          </h3>
+          <p style={{
+            fontFamily: "Inter, sans-serif",
+            fontSize: isMain ? "clamp(13px, 1.8vw, 15px)" : "clamp(11px, 1.5vw, 13px)",
+            fontWeight: 500,
+            color: "#94a3b8",
+            lineHeight: 1.5,
+            maxWidth: isMain ? 550 : "100%",
+            marginBottom: isMain ? 16 : 14
+          }}>
+            {subtitle}
+          </p>
+
+          {isMain && (
+            <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#94a3b8", fontSize: 12, fontWeight: 600 }}>
+                <Clock style={{ width: 14, height: 14 }} />
+                {duration}
+              </div>
+              <div style={{
+                border: "1.5px solid rgba(255,255,255,0.25)",
+                borderRadius: 4,
+                padding: "2px 6px",
+                fontSize: 10,
+                fontWeight: 800,
+                color: "#94a3b8"
+              }}>
+                HD 1080p
+              </div>
+            </div>
+          )}
+
+          {/* Button trigger row */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12, pointerEvents: "auto" }}>
+            {isMain ? (
+              <>
+                <button 
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    padding: "12px 28px",
+                    background: "#2563eb",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: 100,
+                    fontWeight: 800,
+                    fontSize: 14,
+                    cursor: "pointer",
+                    transition: "all 0.2s"
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "#1d4ed8"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "#2563eb"; e.currentTarget.style.transform = "translateY(0)"; }}
+                >
+                  <Play style={{ width: 14, height: 14 }} fill="white" />
+                  Watch Showreel
+                </button>
+
+                <button 
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: "50%",
+                    border: "1px solid rgba(255,255,255,0.2)",
+                    background: "rgba(255,255,255,0.05)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#fff",
+                    cursor: "pointer",
+                    transition: "all 0.2s"
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.15)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "rgba(255,255,255,0.05)"; }}
+                  onClick={e => {
+                    e.stopPropagation();
+                    if (navigator.share) {
+                      navigator.share({ title: title, text: subtitle, url: window.location.href });
+                    } else {
+                      navigator.clipboard.writeText(window.location.href);
+                      alert("Link copied to clipboard!");
+                    }
+                  }}
+                >
+                  <Share2 style={{ width: 16, height: 16 }} />
+                </button>
+              </>
+            ) : (
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <button 
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    padding: "10px 22px",
+                    background: "rgba(255, 255, 255, 0.08)",
+                    border: "1px solid rgba(255, 255, 255, 0.15)",
+                    borderRadius: 100,
+                    color: "#fff",
+                    fontWeight: 700,
+                    fontSize: 12,
+                    cursor: "pointer",
+                    transition: "all 0.2s"
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "rgba(255, 255, 255, 0.18)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)"; }}
+                >
+                  <Play style={{ width: 12, height: 12 }} fill="white" />
+                  {videoId === "motion-design" ? "Watch Motion Design" : "Watch Workflow"}
+                </button>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "#94a3b8" }}>{duration}</span>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -501,8 +651,10 @@ const VideoCard = ({
 const Showreel = ({ th, isDark, showreelRef }) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-      {/* 1. Main Info Card */}
+      {/* 1. Main Video Card */}
       <VideoCard
+        videoId="showreel"
+        poster="/showreel-poster.png"
         label="Featured Reel"
         title="Production Showreel 2026"
         subtitle="A collection of our latest 3D character work — bringing stories and characters to life."
@@ -517,6 +669,8 @@ const Showreel = ({ th, isDark, showreelRef }) => {
       <div className="showreel-grid">
         {/* Left Sub-card: Motion Design */}
         <VideoCard
+          videoId="motion-design"
+          poster="/commercial-motion-poster.png"
           label="Motion Design - Post Production"
           title="Motion design - Post Production"
           subtitle="Bringing stories to life through dynamic motion, VFX and cinematic finishing."
@@ -529,6 +683,8 @@ const Showreel = ({ th, isDark, showreelRef }) => {
 
         {/* Right Sub-card: Tech & Tools */}
         <VideoCard
+          videoId="workflow"
+          poster="/soon-project-poster.png"
           label="Tech & Tools"
           title="Our Workflow & Tools"
           subtitle="Explore the pipeline, software and techniques behind our 3D work."
@@ -613,3 +769,4 @@ const Showreel = ({ th, isDark, showreelRef }) => {
   );
 };
 ;
+

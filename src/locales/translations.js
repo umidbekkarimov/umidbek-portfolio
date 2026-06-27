@@ -8,7 +8,36 @@ export const T = {
       { title: "Squash & Stretch", category: "Animation Fundamentals · Maya", video: "/videos/squash-stretch-animation.mp4", poster: "/squash-stretch-thumbnail.png" },
       { title: "Shadow in the Old City", category: "CGI & Lighting · Maya", video: "/videos/shadow-city-animation.mp4", poster: "/shadow-city-thumbnail.png" }
     ] },
-    about: { label: "About Me", heading: "Timing. Weight.\nCharacter", bio1: "I've been studying and practicing 3D animation extensively, driven by a deep passion for character performance and believable movement. My workflow combines Autodesk Maya and Blender, applying core principles like timing, spacing, weight, and acting.", bio2: "I continuously study animation to improve both technical execution and storytelling through motion, refinement and push the limits of what motion can express.", software: "Software", skills: "Specialisations", softwareList: ["Autodesk Maya", "Blender", "After Effects"], skillsList: ["Character Animation", "Motion Editing", "Motion Design"], statsExp: "Learning Mindset", statsProj: "Autodesk Maya", statsStyle: "Character Animation", labelExp: "Approach", labelProj: "Main Tool", labelStyle: "Focus", openToWork: "Open to Work", openToWorkDesc: "Currently looking for 3D Animation roles or freelance opportunities to bring characters to life." },
+    about: { 
+      label: "About Me", 
+      heading: "Timing.\nWeight.\nCharacter", 
+      intro: {
+        line1: "I've been studying and practicing 3D animation extensively, driven by a deep passion for character performance and believable movement.",
+        line2: "My workflow combines Autodesk Maya and Blender, applying core principles like timing, spacing, weight, and acting to bring digital characters to life.",
+        line3: "I'm constantly learning and refining my craft to push the limits of what motion can express, aiming to create memorable and emotionally resonant experiences."
+      },
+      software: "Software", 
+      skills: "Specialisations", 
+      softwareList: ["Blender", "Autodesk Maya", "After Effects"], 
+      softwareDetails: {
+        Maya: ["Character Animation", "Acting", "Performance"],
+        Blender: ["Character Animation", "Blocking", "Polish"],
+        AfterEffects: ["Motion Design", "Editing", "Presentation"]
+      },
+      skillsList: ["Character Animation", "Acting", "Body Mechanics", "Weight & Timing", "Performance", "Motion Design"], 
+      infoCards: [
+        { title: "Learning Mindset", desc: "Always studying animation principles and improving my workflow." },
+        { title: "Maya + Blender", desc: "Using both Autodesk Maya and Blender as core animation tools." },
+        { title: "Character Performance", desc: "Focused on believable movement, acting and visual storytelling." }
+      ],
+      openToWork: {
+        title: "Available For",
+        options: ["Freelance", "Remote", "Full-Time"],
+        responseTimeLabel: "Response Time",
+        responseTime: "< 24 Hours",
+        btn: "Contact Me"
+      }
+    },
     contact: { label: "Contact", heading: "Let's Create\nSomething Great", sub: "Open to freelance, full-time roles, and creative collaborations.", resume: "Download Résumé", telegram: "Telegram", linkedin: "LinkedIn", instagram: "Instagram", gmail: "Send Email", formTitle: "Quick Message", namePh: "Your Name", emailPh: "Your Email", msgPh: "Your Message", send: "Send Message", sending: "Sending…", sent: "Message Sent ✓" },
     footer: "Crafted with obsession. All rights reserved.",
   },
@@ -21,7 +50,36 @@ export const T = {
       { title: "Сквош и стретч (Bouncing Ball)", category: "Основы анимации · Maya", video: "/videos/squash-stretch-animation.mp4", poster: "/squash-stretch-thumbnail.png" },
       { title: "Тень в старом городе (Shadow City)", category: "CGI и освещение · Maya", video: "/videos/shadow-city-animation.mp4", poster: "/shadow-city-thumbnail.png" }
     ] },
-    about: { label: "Обо мне", heading: "Тайминг. Вес.\nПерсонаж.", bio1: "Я активно изучаю и практикую 3D-анимацию, движимый глубокой страстью к актерской игре персонажей и реалистичности их движений. В работе сочетаю Autodesk Maya и Blender.", bio2: "Я применяю ключевые принципы — тайминг, спейсинг, вес и актерское мастерство, чтобы постоянно совершенствовать визуальное повествование через движение.", software: "Инструменты", skills: "Специализации", softwareList: ["Autodesk Maya", "Blender", "After Effects"], skillsList: ["Character Animation", "Motion Editing", "Motion Design"], statsExp: "Learning Mindset", statsProj: "Autodesk Maya", statsStyle: "Character Animation", labelExp: "Подход", labelProj: "Инструмент", labelStyle: "Фокус", openToWork: "Открыт к работе", openToWorkDesc: "Ищу позиции 3D Animator или фриланс-проекты для оживления персонажей." },
+    about: { 
+      label: "Обо мне", 
+      heading: "Тайминг.\nВес.\nПерсонаж.", 
+      intro: {
+        line1: "Я активно изучаю и практикую 3D-анимацию, движимый глубокой страстью к актерской игре персонажей и реалистичности их движений.",
+        line2: "Мой рабочий процесс сочетает Autodesk Maya и Blender, где я применяю ключевые принципы — тайминг, спейсинг, вес и актерское мастерство.",
+        line3: "Я постоянно совершенствую свои навыки, чтобы расширить границы выразительности движения и создавать запоминающиеся истории."
+      },
+      software: "Инструменты", 
+      skills: "Специализации", 
+      softwareList: ["Blender", "Autodesk Maya", "After Effects"], 
+      softwareDetails: {
+        Maya: ["Анимация персонажей", "Актерская игра", "Перформанс"],
+        Blender: ["Анимация персонажей", "Блокинг", "Полировка (Polish)"],
+        AfterEffects: ["Моушн-дизайн", "Монтаж", "Презентация"]
+      },
+      skillsList: ["Анимация персонажей", "Актерская игра", "Механика тела", "Вес и тайминг", "Перформанс", "Моушн-дизайн"], 
+      infoCards: [
+        { title: "Постоянное развитие", desc: "Регулярное изучение принципов анимации и оптимизация рабочего процесса." },
+        { title: "Maya + Blender", desc: "Использование Autodesk Maya и Blender в качестве основных инструментов анимации." },
+        { title: "Анимация персонажей", desc: "Фокус на реалистичном движении, актерской игре и визуальном повествовании." }
+      ],
+      openToWork: {
+        title: "Доступен Для",
+        options: ["Фриланс", "Удаленно", "Полный День"],
+        responseTimeLabel: "Время Ответа",
+        responseTime: "< 24 Часов",
+        btn: "Связаться"
+      }
+    },
     contact: { label: "Контакты", heading: "Создадим\nЧто-то Великое", sub: "Открыт для фриланса, постоянной работы и коллабораций.", resume: "Скачать Резюме", telegram: "Telegram", linkedin: "LinkedIn", instagram: "Instagram", gmail: "Написать Email", formTitle: "Быстрое сообщение", namePh: "Ваше имя", emailPh: "Ваш Email", msgPh: "Ваше сообщение", send: "Отправить", sending: "Отправляется…", sent: "Отправлено ✓" },
     footer: "Создано с одержимостью. Все права защищены.",
   },
@@ -34,7 +92,36 @@ export const T = {
       { title: "Bouncing Ball (Squash & Stretch)", category: "Animatsiya asoslari · Maya", video: "/videos/squash-stretch-animation.mp4", poster: "/squash-stretch-thumbnail.png" },
       { title: "Eski shahardagi soya (Shadow City)", category: "CGI va yoritish · Maya", video: "/videos/shadow-city-animation.mp4", poster: "/shadow-city-thumbnail.png" }
     ] },
-    about: { label: "Men haqimda", heading: "Vaqt, Og'irlik,\nXarakter", bio1: "Men qahramonlar ijrosi va ishonchli harakatlar dinamikasiga bo'lgan cheksiz ishtiyoqim sababli 3D animatsiyani chuqur o'rganib va amalda qo'llab kelmoqdaman. Autodesk Maya va Blender dasturlaridan foydalanaman.", bio2: "Vaqt (timing), masofa (spacing), og'irlik (weight) va aktyorlik mahorati kabi fundamental prinsiplardan foydalanib, harakat orqali hikoyalarni ifodalash chegaralarini kengaytiraman.", software: "Dasturlar", skills: "Ixtisosliklar", softwareList: ["Autodesk Maya", "Blender", "After Effects"], skillsList: ["Character Animation", "Motion Editing", "Motion Design"], statsExp: "Learning Mindset", statsProj: "Autodesk Maya", statsStyle: "Character Animation", labelExp: "Yondashuv", labelProj: "Asosiy vosita", labelStyle: "Yo'nalish", openToWork: "Ishga tayyor", openToWorkDesc: "3D Animation yoki freelance imkoniyatlar uchun ochiqman - qahramonlarga hayot bag'ishlash." },
+    about: { 
+      label: "Men haqimda", 
+      heading: "Vaqt.\nOg'irlik.\nXarakter", 
+      intro: {
+        line1: "Men qahramonlar ijrosi va ishonchli harakatlar dinamikasiga bo'lgan cheksiz ishtiyoqim sababli 3D animatsiyani chuqur o'rganib va amalda qo'llab kelmoqdaman.",
+        line2: "Mening ish jarayonim Autodesk Maya va Blender-ni birlashtiradi, bu esa menga vaqt (timing), masofa (spacing), og'irlik (weight) va aktyorlik mahorati kabi fundamental prinsiplardan foydalanib qahramonlarni jonlantirish imkonini beradi.",
+        line3: "Harakat orqali his-tuyg'ular va hikoyalarni ifodalash chegaralarini kengaytirish uchun o'z mahoratimni doimiy ravishda oshirib boraman."
+      },
+      software: "Dasturlar", 
+      skills: "Ixtisosliklar", 
+      softwareList: ["Blender", "Autodesk Maya", "After Effects"], 
+      softwareDetails: {
+        Maya: ["Qahramonlar animatsiyasi", "Aktyorlik mahorati", "Ijro (Performance)"],
+        Blender: ["Qahramonlar animatsiyasi", "Bloking", "Sayqallash (Polish)"],
+        AfterEffects: ["Motion dizayn", "Montaj", "Taqdimot"]
+      },
+      skillsList: ["Qahramonlar animatsiyasi", "Aktyorlik mahorati", "Tana mexanikasi", "Og'irlik va tayming", "Ijro (Performance)", "Motion dizayn"], 
+      infoCards: [
+        { title: "Doimiy Rivojlanish", desc: "Animatsiya prinsiplarini doimiy o'rganish va ish jarayonini yaxshilash." },
+        { title: "Maya + Blender", desc: "Autodesk Maya va Blender dasturlaridan asosiy animatsiya vositasi sifatida foydalanish." },
+        { title: "Personajlar Dinamikasi", desc: "Ishonchli harakatlar, aktyorlik mahorati va vizual hikoyachilikka e'tibor." }
+      ],
+      openToWork: {
+        title: "Available For",
+        options: ["Freelance", "Remote", "Full-Time"],
+        responseTimeLabel: "Response Time",
+        responseTime: "< 24 Hours",
+        btn: "Contact Me"
+      }
+    },
     contact: { label: "Aloqa", heading: "Ajoyib Narsa\nBirga Yarataylik", sub: "Frilanс, to'liq kunlik ish va ijodiy hamkorlik uchun ochiqman.", resume: "Rezyume yuklab olish", telegram: "Telegram", linkedin: "LinkedIn", instagram: "Instagram", gmail: "Email yuborish", formTitle: "Tezkor xabar", namePh: "Ismingiz", emailPh: "Emailingiz", msgPh: "Xabaringiz", send: "Yuborish", sending: "Yuborilmoqda…", sent: "Yuborildi ✓" },
     footer: "Ehtiros bilan yaratilgan. Barcha huquqlar himoyalangan.",
   },

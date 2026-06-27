@@ -12,35 +12,6 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
             <h2 className="rl sh2" style={{ fontSize:78, fontWeight:800, lineHeight:0.9, letterSpacing:"-0.01em", marginBottom:52, whiteSpace:"pre-line", color: th.text }}>{t.work.heading}</h2>
           </Reveal>
           <Reveal delay={120} direction="up"><Showreel activeVideo={activeVideo} setActiveVideo={setActiveVideo} th={th} isDark={isDark} showreelRef={showreelRef} /></Reveal>
-          
-          {/* Interactive Fanned Projects Card Stack */}
-          <div className="projects-card-stack" style={{
-            position: "relative",
-            minHeight: 480,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: 50,
-            marginBottom: 50,
-            width: "100%"
-          }}>
-            {t.work.projects.map((p,i)=>{
-              const playing = activeVideo === `project-${i}`;
-              return (
-                <div 
-                  key={i} 
-                  className={`stack-card card-index-${i} ${playing ? "active-playing" : ""}`} 
-                  style={{
-                    position: "absolute",
-                    transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
-                    zIndex: playing ? 100 : (i + 1)
-                  }}
-                >
-                  <PCard title={p.title} category={p.category} videoUrl={p.video} poster={p.poster} idx={i} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} />
-                </div>
-              );
-            })}
-          </div>
         </div>
       </section>
     </>

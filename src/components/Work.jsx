@@ -55,7 +55,7 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
   const showreelItem = {
     title: t.work.showreelTitle || "Production Showreel 2026",
     category: lang === "uz" ? "Asosiy Showreel" : lang === "ru" ? "Главный шоурил" : "Featured Reel",
-    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    video: "/videos/animation_showreel.mp4",
     poster: "/showreel-poster.png",
     duration: t.work.showreelMeta || "2 min 30 sec",
     software: "Maya & Blender",
@@ -70,6 +70,8 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
       let software = "Autodesk Maya";
       if (proj.category.toLowerCase().includes("blender")) {
         software = "Blender";
+      } else if (proj.category.toLowerCase().includes("after effects")) {
+        software = "After Effects";
       }
       return {
         title: proj.title,
@@ -88,6 +90,7 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
   // Active project tab state
   const [activeProjectIdx, setActiveProjectIdx] = useState(0);
   const activeProject = projects[activeProjectIdx] || showreelItem;
+  const isVertical = activeProject.video?.includes("motion_showreel") || activeProject.category?.toLowerCase().includes("after effects");
 
   // Video player control states
   const [playing, setPlaying] = useState(false);
@@ -240,82 +243,94 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
         </Reveal>
 
         {/* Studio Workstation Dashboard Grid */}
-        <div className="work-grid-layout">
+        <div className={projects.length > 1 ? "work-grid-layout" : ""} style={projects.length > 1 ? {} : { maxWidth: isVertical ? 450 : 960, margin: "0 auto" }}>
           
           {/* LEFT COLUMN: Project Directory Selector */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: 10, borderBottom: `1px dashed ${th.divider}` }}>
-              <span className="inter-font" style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", color: th.textSub, opacity: 0.7 }}>
-                DIRECTORIES // PROJECT_FILES
-              </span>
-              <span className="inter-font" style={{ fontSize: 10, fontWeight: 800, color: th.accent }}>
-                [{projects.length}] ITEMS
-              </span>
-            </div>
+          {projects.length > 1 && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingBottom: 10, borderBottom: `1px dashed ${th.divider}` }}>
+                <span className="inter-font" style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.2em", color: th.textSub, opacity: 0.7 }}>
+                  DIRECTORIES // PROJECT_FILES
+                </span>
+                <span className="inter-font" style={{ fontSize: 10, fontWeight: 800, color: th.accent }}>
+                  [{projects.length}] ITEMS
+                </span>
+              </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {projects.map((proj, idx) => {
-                const isActive = activeProjectIdx === idx;
-                return (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveProjectIdx(idx)}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 16,
-                      padding: "16px 20px",
-                      borderRadius: 16,
-                      background: isActive ? (isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)") : "transparent",
-                      border: `1px solid ${isActive ? th.borderHov : "transparent"}`,
-                      textAlign: "left",
-                      cursor: "pointer",
-                      transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-                      position: "relative",
-                      overflow: "hidden"
-                    }}
-                  >
-                    {/* Active highlight bar */}
-                    {isActive && (
-                      <div style={{ position: "absolute", left: 0, top: "20%", bottom: "20%", width: 3, background: th.accent, borderRadius: "0 2px 2px 0" }} />
-                    )}
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                {projects.map((proj, idx) => {
+                  const isActive = activeProjectIdx === idx;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveProjectIdx(idx)}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 16,
+                        padding: "16px 20px",
+                        borderRadius: 16,
+                        background: isActive ? (isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)") : "transparent",
+                        border: `1px solid ${isActive ? th.borderHov : "transparent"}`,
+                        textAlign: "left",
+                        cursor: "pointer",
+                        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                        position: "relative",
+                        overflow: "hidden"
+                      }}
+                    >
+                      {/* Active highlight bar */}
+                      {isActive && (
+                        <div style={{ position: "absolute", left: 0, top: "20%", bottom: "20%", width: 3, background: th.accent, borderRadius: "0 2px 2px 0" }} />
+                      )}
 
-                    {/* Numeric Index */}
-                    <span className="bg-font" style={{ fontSize: 13, fontWeight: 800, color: isActive ? th.accent : th.textSub, opacity: isActive ? 1 : 0.4 }}>
-                      0{idx + 1}
-                    </span>
+                      {/* Numeric Index */}
+                      <span className="bg-font" style={{ fontSize: 13, fontWeight: 800, color: isActive ? th.accent : th.textSub, opacity: isActive ? 1 : 0.4 }}>
+                        0{idx + 1}
+                      </span>
 
-                    {/* Project meta description */}
-                    <div style={{ flex: 1 }}>
-                      <h4 className="bg-font" style={{ fontSize: 15, fontWeight: 700, color: isActive ? th.text : th.textSub, margin: "0 0 4px 0" }}>
-                        {proj.title}
-                      </h4>
-                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                        <span className="inter-font" style={{ fontSize: 11, color: th.textSub, opacity: 0.6 }}>{proj.category.split(" · ")[0]}</span>
-                        <span style={{ width: 3, height: 3, borderRadius: "50%", background: th.divider }} />
-                        <span className="inter-font" style={{ fontSize: 10, fontWeight: 600, color: th.accent }}>{proj.software}</span>
+                      {/* Project meta description */}
+                      <div style={{ flex: 1 }}>
+                        <h4 className="bg-font" style={{ fontSize: 15, fontWeight: 700, color: isActive ? th.text : th.textSub, margin: "0 0 4px 0" }}>
+                          {proj.title}
+                        </h4>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          <span className="inter-font" style={{ fontSize: 11, color: th.textSub, opacity: 0.6 }}>{proj.category.split(" · ")[0]}</span>
+                          <span style={{ width: 3, height: 3, borderRadius: "50%", background: th.divider }} />
+                          <span className="inter-font" style={{ fontSize: 10, fontWeight: 600, color: th.accent }}>{proj.software}</span>
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Badge showing playtime */}
-                    <span className="inter-font" style={{ fontSize: 11, color: th.textSub, opacity: 0.5 }}>
-                      {proj.duration.split(" ")[0]}
-                    </span>
-                  </button>
-                );
-              })}
+                      {/* Badge showing playtime */}
+                      <span className="inter-font" style={{ fontSize: 11, color: th.textSub, opacity: 0.5 }}>
+                        {proj.duration.split(" ")[0]}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* RIGHT COLUMN: Cinematic Studio Monitor Player & Control HUD */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 24,
+              maxWidth: isVertical ? 420 : "100%",
+              width: "100%",
+              margin: isVertical ? "0 auto" : "0",
+              transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)"
+            }}
+          >
             
             {/* Studio Monitor Screen */}
             <div
               ref={monitorContainerRef}
               style={{
                 position: "relative",
-                aspectRatio: "16/9",
+                aspectRatio: isVertical ? "9/16" : "16/9",
                 background: "#080a10",
                 borderRadius: 24,
                 overflow: "hidden",
@@ -352,7 +367,7 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
                 style={{
                   width: "100%",
                   height: "100%",
-                  objectFit: "cover",
+                  objectFit: "contain",
                   cursor: "pointer",
                   zIndex: 1,
                   position: "relative"

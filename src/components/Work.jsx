@@ -90,7 +90,7 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
   // Active project tab state
   const [activeProjectIdx, setActiveProjectIdx] = useState(0);
   const activeProject = projects[activeProjectIdx] || showreelItem;
-  const isVertical = activeProject.video?.includes("motion_showreel") || activeProject.category?.toLowerCase().includes("after effects");
+  const isVertical = activeProject.video?.includes("Sequence_01") || activeProject.video?.includes("motion_showreel") || activeProject.category?.toLowerCase().includes("after effects");
 
   // Video player control states
   const [playing, setPlaying] = useState(false);

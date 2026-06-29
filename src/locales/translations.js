@@ -3,7 +3,7 @@ export const T = {
     nav: ["Work", "About", "Contact"],
     hero: { greeting: "Hello, I'm", name: "Umidbek Karimov", role: "3D Animator | Motion Designer", bio: "Character-driven 3D Animator & Motion Designer specializing in fluid, performance-based animations and dynamic video content. My workflow is strictly rooted in the fundamentals of motion—weight, timing, and storytelling—harnessed within Autodesk Maya and Adobe After Effects to deliver high-quality visual solutions. Open to full-time and freelance opportunities in game studios, animation productions, and creative agencies.", cta1: "View Showreel", cta2: "Contact Me", badge: "Available for hire", scroll: "Scroll", explore: "Explore Portfolio" },
     work: { label: "My Portfolio", heading: "Giving Life to\n3D Characters", showreelTitle: "Production Showreel 2026", showreelMeta: "2 min 30 sec  ·  HD 1080p", projects: [
-      { title: "Motion graphics - Post Production", category: "Motion Design · After Effects", video: "/videos/motion_showreel.mp4", poster: "/commercial-motion-poster.png" }
+      { title: "Motion graphics - Post Production", category: "Motion Design · After Effects", video: "/videos/Sequence_01_1.mp4", poster: "/commercial-motion-poster.png" }
     ] },
     about: {
       label: "About Me",
@@ -75,7 +75,7 @@ export const T = {
     nav: ["Работы", "Обо мне", "Контакты"],
     hero: { greeting: "Привет, я", name: "Умидбек Каримов", role: "3D-аниматор | Моушн-дизайнер", bio: "3D-аниматор и Motion Designer. Специализируюсь на создании плавной, выразительной анимации персонажей и динамичного видеоконтента. В работе строго опираюсь на фундаментальные принципы движения — механику тела, вес, тайминг и сторителлинг в среде Autodesk Maya и After Effects для создания качественных визуальных решений. Открыт к долгосрочному сотрудничеству (full-time) и проектной работе (freelance) с игровыми студиями, анимационными производствах и видеоагентствами.", cta1: "Смотреть Showreel", cta2: "Написать", badge: "Открыт к работе", scroll: "Вниз", explore: "Смотреть работы" },
     work: { label: "Моё портфолио", heading: "Оживляя\n3D-персонажей", showreelTitle: "Шоурил 2026", showreelMeta: "2 мин 30 сек  ·  HD 1080p", projects: [
-      { title: "Motion graphics - Post Production", category: "Моушн-дизайн · After Effects", video: "/videos/motion_showreel.mp4", poster: "/commercial-motion-poster.png" }
+      { title: "Motion graphics - Post Production", category: "Моушн-дизайн · After Effects", video: "/videos/Sequence_01_1.mp4", poster: "/commercial-motion-poster.png" }
     ] },
     about: {
       label: "Обо мне",
@@ -147,7 +147,7 @@ export const T = {
     nav: ["Ishlar", "Men haqimda", "Aloqa"],
     hero: { greeting: "Salom, men", name: "Umidbek Karimov", role: "3D Animator | Motion Designer", bio: "3D Animator va Motion Designer. Qahramonlar animatsiyasi hamda dinamik video kontentlar yaratishga ixtisoslashganman. Ish jarayonimda animatsiyaning fundamental prinsiplari — tana mexanikasi, ogʻirlik, tayming va vizual hikoyachilik qonuniyatlariga qatʼiy eʼtibor qaratgan holda, Autodesk Maya va After Effects muhitida yuqori sifatli vizual yechimlar ishlab chiqaman. Geymdev studiyalari, animatsiya ishlab chiqarish jamoalari va video agentliklarda shtatdagi (full-time) hamda frilans loyihalarda ishlashga tayyorman.", cta1: "Showreelni ko'rish", cta2: "Bog'lanish", badge: "Ishga tayyor", scroll: "Pastga", explore: "Ishlarni ko'rish" },
     work: { label: "Mening ishlarim", heading: "3D qahramonlarni\njonlantirish", showreelTitle: "Showreel 2026", showreelMeta: "2 daqiqa 30 soniya  ·  HD 1080p", projects: [
-      { title: "Motion graphics - Post Production", category: "Motion dizayn · After Effects", video: "/videos/motion_showreel.mp4", poster: "/commercial-motion-poster.png" }
+      { title: "Motion graphics - Post Production", category: "Motion dizayn · After Effects", video: "/videos/Sequence_01_1.mp4", poster: "/commercial-motion-poster.png" }
     ] },
     about: {
       label: "Men haqimda",

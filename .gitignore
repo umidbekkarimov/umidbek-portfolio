@@ -25,6 +25,3 @@ dist-ssr
 
 .vercel
 
-# Ignore large videos
-public/videos/animation_showreel.mp4
-public/videos/motion_showreel.mp4

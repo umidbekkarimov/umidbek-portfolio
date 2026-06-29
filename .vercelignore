@@ -3,3 +3,5 @@ node_modules
 .vercel
 dist
 .env
+public/videos/animation_showreel.mp4
+public/videos/motion_showreel.mp4

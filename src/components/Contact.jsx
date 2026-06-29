@@ -11,8 +11,8 @@ export default function Contact({ t, th, isDark, form, setForm, fs, send, Reveal
         <div className="section-inner" style={{ maxWidth:1240, margin:"0 auto", padding:"0 28px" }}>
           <Reveal direction="up">
             <SL text={t.contact.label} th={th} />
-            <h2 className="rl sh2" style={{ fontSize:78, fontWeight:800, lineHeight:0.9, letterSpacing:"-0.01em", marginBottom:14, whiteSpace:"pre-line", color: th.text }}>{t.contact.heading}</h2>
-            <p className="dm" style={{ fontSize:16, color: th.textSub, marginBottom:60 }}>{t.contact.sub}</p>
+            <h2 className="bg-font sh2" style={{ fontSize:78, fontWeight:800, lineHeight:0.9, letterSpacing:"-0.01em", marginBottom:14, whiteSpace:"pre-line", color: th.text }}>{t.contact.heading}</h2>
+            <p className="inter-font" style={{ fontSize:16, color: th.textSub, marginBottom:60 }}>{t.contact.sub}</p>
           </Reveal>
           <div className="tc contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:80 }}>
             <Reveal delay={100} direction="left">
@@ -30,22 +30,27 @@ export default function Contact({ t, th, isDark, form, setForm, fs, send, Reveal
                   <div style={{ width:36, height:36, borderRadius:10, background:`${th.accent}20`, display:"flex", alignItems:"center", justifyContent:"center" }}>
                     <Send style={{width:15,height:15,color:th.accent}}/>
                   </div>
-                  <h3 className="rl" style={{ fontSize:18, fontWeight:700, color: th.text }}>{t.contact.formTitle}</h3>
+                  <h3 className="bg-font" style={{ fontSize:18, fontWeight:700, color: th.text }}>{t.contact.formTitle}</h3>
                 </div>
                 <div style={{ display:"flex", flexDirection:"column", gap:11 }}>
+                  {/* Name and Email */}
                   {[{k:"name",ph:t.contact.namePh,tp:"text"},{k:"email",ph:t.contact.emailPh,tp:"email"}].map(f=>(
                     <input key={f.k} type={f.tp} placeholder={f.ph} value={form[f.k]} onChange={e=>setForm({...form,[f.k]:e.target.value})}
+                      className="inter-font"
                       style={{ padding:"13px 17px", borderRadius:12, border:`1px solid ${th.border}`, background: th.inputBg, color: th.inputColor, fontSize:14, outline:"none", transition:"border-color 0.2s" }}
                       onFocus={e=>e.target.style.borderColor=th.accent+"70"}
                       onBlur={e=>e.target.style.borderColor=th.border}
                     />
                   ))}
-                  <textarea placeholder={t.contact.msgPh} rows={5} value={form.msg} onChange={e=>setForm({...form,msg:e.target.value})}
+
+                  {/* Message */}
+                  <textarea placeholder={t.contact.msgPh} rows={4} value={form.msg} onChange={e=>setForm({...form,msg:e.target.value})}
+                    className="inter-font"
                     style={{ padding:"13px 17px", borderRadius:12, border:`1px solid ${th.border}`, background: th.inputBg, color: th.inputColor, fontSize:14, outline:"none", resize:"none", transition:"border-color 0.2s" }}
                     onFocus={e=>e.target.style.borderColor=th.accent+"70"}
                     onBlur={e=>e.target.style.borderColor=th.border}
                   />
-                  <button onClick={send} disabled={fs!=="idle"} className="dm"
+                  <button onClick={send} disabled={fs!=="idle"} className="inter-font"
                     style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:9, padding:15, borderRadius:12, background: fs==="sent"?"linear-gradient(135deg,#10b981,#059669)":`linear-gradient(135deg,${th.accent},${isDark?"#2563eb":"#1d4ed8"})`, color:"#fff", fontSize:15, fontWeight:600, border:"none", cursor: fs!=="idle"?"not-allowed":"pointer", opacity: fs==="sending"?0.75:1, boxShadow: fs==="sent"?"0 4px 20px rgba(16,185,129,0.3)":`0 4px 20px ${th.accent}44`, transition:"all 0.3s" }}
                     onMouseEnter={e=>{if(fs==="idle")e.currentTarget.style.transform="translateY(-1px)";}}
                     onMouseLeave={e=>{e.currentTarget.style.transform="none";}}
@@ -80,7 +85,7 @@ const CPanel = ({ label, icon, color, href, isBtn, onClick, th }) => {
   };
   const inner = <>
     <span style={{ width:42, height:42, borderRadius:12, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, background: color+"22", color, transition:"transform 0.28s", transform: h?"scale(1.1)":"scale(1)" }}>{icon}</span>
-    <span style={{ fontFamily:"DM Sans,sans-serif", fontSize:15, color: h?th.text:th.textSub, transition:"color 0.28s", flex:1, fontWeight:500 }}>{label}</span>
+    <span className="inter-font" style={{ fontSize:15, color: h?th.text:th.textSub, transition:"color 0.28s", flex:1, fontWeight:500 }}>{label}</span>
     <ExternalLink style={{ width:14, height:14, color: h?th.textMuted:th.textFaint }} />
   </>;
   if (isBtn) return <button type="button" onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)} onClick={onClick} style={s}>{inner}</button>;

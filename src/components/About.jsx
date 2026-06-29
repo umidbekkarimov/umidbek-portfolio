@@ -1,267 +1,342 @@
-import { useState } from "react";
-import { BookOpen, Cpu, Sparkles, Check, Clock } from "lucide-react";
-
-const IntroCard = ({ t, th, isDark }) => {
-  const [h, setH] = useState(false);
-  return (
-    <div
-      onMouseEnter={() => setH(true)}
-      onMouseLeave={() => setH(false)}
-      style={{
-        padding: "24px 28px",
-        borderRadius: 24,
-        border: `1px solid ${h ? th.accent + "50" : th.border}`,
-        background: isDark ? "rgba(255, 255, 255, 0.015)" : "rgba(255, 255, 255, 0.6)",
-        backdropFilter: "blur(12px)",
-        boxShadow: h ? `0 12px 32px rgba(59, 130, 246, 0.08)` : "none",
-        transform: h ? "translateY(-4px)" : "none",
-        transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-        marginBottom: 30
-      }}
-    >
-      <p className="dm" style={{ fontSize: 15, color: th.text, fontWeight: 600, lineHeight: 1.6, marginBottom: 12 }}>
-        {t.about.intro.line1}
-      </p>
-      <p className="dm" style={{ fontSize: 14, color: th.textSub, lineHeight: 1.75, marginBottom: 12 }}>
-        {t.about.intro.line2}
-      </p>
-      <p className="dm" style={{ fontSize: 14, color: th.textSub, lineHeight: 1.75, marginBottom: 0 }}>
-        {t.about.intro.line3}
-      </p>
-    </div>
-  );
-};
-
-const InfoCard = ({ title, desc, icon, th }) => {
-  const [h, setH] = useState(false);
-  return (
-    <div
-      onMouseEnter={() => setH(true)}
-      onMouseLeave={() => setH(false)}
-      style={{
-        display: "flex",
-        alignItems: "start",
-        gap: 16,
-        padding: "18px 20px",
-        borderRadius: 18,
-        border: `1px solid ${h ? th.accent + "40" : th.border}`,
-        background: h ? `${th.accent}05` : th.surface,
-        transform: h ? "translateY(-2px)" : "none",
-        boxShadow: h ? `0 8px 24px rgba(59, 130, 246, 0.05)` : "none",
-        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
-      }}
-    >
-      <div style={{ 
-        marginTop: 2,
-        color: th.accent, 
-        display: "flex", 
-        alignItems: "center", 
-        justifyContent: "center",
-        width: 38,
-        height: 38,
-        borderRadius: 10,
-        background: `${th.accent}0d`,
-        boxShadow: h ? `0 0 12px ${th.accent}33` : "none",
-        transition: "box-shadow 0.3s"
-      }}>
-        {icon}
-      </div>
-      <div>
-        <h4 className="rl" style={{ fontSize: 15, fontWeight: 700, color: th.text, margin: 0, marginBottom: 4 }}>
-          {title}
-        </h4>
-        <p className="dm" style={{ fontSize: 13, color: th.textSub, lineHeight: 1.6, margin: 0 }}>
-          {desc}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-const SkillPill = ({ text, th, isDark }) => {
-  const [h, setH] = useState(false);
-  return (
-    <span
-      className="dm"
-      onMouseEnter={() => setH(true)}
-      onMouseLeave={() => setH(false)}
-      style={{
-        padding: "10px 18px",
-        borderRadius: 100,
-        border: `1px solid ${h ? th.accent : th.border}`,
-        background: h ? `${th.accent}12` : th.surface,
-        color: h ? (isDark ? "#93c5fd" : th.accentHov) : th.textSub,
-        fontSize: 13,
-        fontWeight: 500,
-        boxShadow: h ? `0 0 15px ${th.accent}1c` : "none",
-        transform: h ? "translateY(-2px)" : "none",
-        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-        cursor: "default"
-      }}
-    >
-      {text}
-    </span>
-  );
-};
-
-const OpenToWorkCard = ({ t, th, isDark, scrollTo }) => {
-  const [h, setH] = useState(false);
-  const [btnH, setBtnH] = useState(false);
-  const info = t.about.openToWork;
-  return (
-    <div
-      onMouseEnter={() => setH(true)}
-      onMouseLeave={() => setH(false)}
-      style={{
-        padding: "24px 28px",
-        borderRadius: 22,
-        border: "1px solid rgba(74, 222, 128, 0.2)",
-        background: isDark ? "rgba(74, 222, 128, 0.03)" : "rgba(74, 222, 128, 0.06)",
-        boxShadow: h ? "0 12px 32px rgba(74, 222, 128, 0.08)" : "none",
-        transform: h ? "translateY(-4px)" : "none",
-        transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-        position: "relative",
-        overflow: "hidden"
-      }}
-    >
-      <div style={{
-        position: "absolute",
-        top: -40,
-        right: -40,
-        width: 120,
-        height: 120,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(74, 222, 128, 0.15) 0%, transparent 70%)",
-        filter: "blur(10px)",
-        pointerEvents: "none"
-      }} />
-
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", flexWrap: "wrap", gap: 20 }}>
-        <div>
-          <div style={{ height: 20, display: "flex", alignItems: "center", marginBottom: 12 }}>
-            <h4 className="rl" style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#4ade80", margin: 0 }}>
-              {info.title}
-            </h4>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {info.options.map((opt, idx) => (
-              <div key={idx} style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <Check style={{ width: 14, height: 14, color: "#4ade80" }} />
-                <span className="dm" style={{ fontSize: 14, fontWeight: 500, color: th.text }}>{opt}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, height: 20, marginBottom: 12 }}>
-            <Clock style={{ width: 14, height: 14, color: "#4ade80", opacity: 0.8 }} />
-            <span className="dm" style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: th.textSub }}>
-              {info.responseTimeLabel}
-            </span>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <span className="rl" style={{ fontSize: 18, fontWeight: 800, color: "#4ade80", display: "block", lineHeight: 1.2 }}>
-              {info.responseTime}
-            </span>
-            <button
-              onClick={() => scrollTo?.("contact")}
-              onMouseEnter={() => setBtnH(true)}
-              onMouseLeave={() => setBtnH(false)}
-              className="dm"
-              style={{
-                padding: "10px 24px",
-                borderRadius: 100,
-                background: "#4ade80",
-                color: "#06080c",
-                fontWeight: 700,
-                fontSize: 13,
-                border: "none",
-                cursor: "pointer",
-                boxShadow: btnH ? "0 8px 20px rgba(74, 222, 128, 0.4)" : "none",
-                transform: btnH ? "translateY(-2px)" : "none",
-                transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
-              }}
-            >
-              {info.btn}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+import { useState, useEffect } from "react";
+import { Check, Activity, Sparkles, Video, Cpu, Clock, Play } from "lucide-react";
 
 export default function About({ t, th, isDark, SL, Reveal, scrollTo }) {
+  // We want to support selecting different software in the Toolkit Card
+  const [activeTab, setActiveTab] = useState("Autodesk Maya");
+  
+  // A playhead animation state for the timeline decorator
+  const [playheadPos, setPlayheadPos] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlayheadPos(prev => (prev >= 100 ? 0 : prev + 1));
+    }, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  const activeColor = activeTab === "Blender" ? "#F5792A" : activeTab === "Autodesk Maya" ? "#00A8E0" : "#D29CFF";
+  // The translations keys match the software name
+  const detailKey = activeTab === "Autodesk Maya" ? "Maya" : activeTab === "Blender" ? "Blender" : "AfterEffects";
+  const activeSoftwareDetails = t.about.softwareDetails[detailKey] || [];
+
+  // Capabilities icons mapping
+  const capabilitiesIcons = [
+    <Sparkles style={{ width: 18, height: 18 }} />,
+    <Activity style={{ width: 18, height: 18 }} />,
+    <Cpu style={{ width: 18, height: 18 }} />,
+    <Video style={{ width: 18, height: 18 }} />
+  ];
+
   return (
-    <>
-      {/* ═══ ABOUT ═══ */}
-      <section id="about" style={{ position:"relative", zIndex:1, padding:"140px 0", borderTop:`1px solid ${th.divider}` }}>
-        <div className="section-inner" style={{ maxWidth:1240, margin:"0 auto", padding:"0 28px" }}>
-          <div className="tc" style={{ display:"grid", gridTemplateColumns:"1.05fr 0.95fr", gap:"60px 100px", alignItems:"start" }}>
+    <section id="about" style={{ padding: "100px 0", background: th.bg, color: th.text, transition: "all 0.5s ease" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
+        
+        {/* Category Header */}
+        <Reveal direction="down">
+          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 56 }}>
+            <SL text={t.about.label} th={th} />
+            <h2 className="bg-font sh2" style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 900, lineHeight: 1.1, margin: 0, color: th.text }}>
+              {t.about.heading}
+            </h2>
+            <p className="inter-font" style={{ fontSize: 18, fontWeight: 500, color: th.accent, margin: "4px 0 0 0" }}>
+              {t.about.subHeading}
+            </p>
+          </div>
+        </Reveal>
+
+        {/* Main Content Grid */}
+        <div className="about-grid-layout" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 48, alignItems: "start" }}>
+          
+          {/* Left Column: Bio & Capabilities Grid */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+            {/* Bio Paragraph */}
+            <Reveal direction="right" delay={100}>
+              <p className="inter-font" style={{ fontSize: 17, lineHeight: 1.8, color: th.textSub, margin: 0, fontWeight: 400 }}>
+                {t.about.bio}
+              </p>
+            </Reveal>
+
+            {/* Capabilities grid */}
+            <div>
+              <Reveal direction="up" delay={150}>
+                <h3 className="bg-font" style={{ fontSize: 18, fontWeight: 800, letterSpacing: "0.05em", color: th.text, marginBottom: 24, textTransform: "uppercase" }}>
+                  {t.about.capabilitiesTitle}
+                </h3>
+              </Reveal>
+              
+              <div className="capabilities-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+                {t.about.capabilities.map((cap, idx) => (
+                  <Reveal key={idx} direction="up" delay={200 + idx * 50}>
+                    <div 
+                      className="bento-card"
+                      style={{
+                        padding: "24px",
+                        background: isDark ? "rgba(255, 255, 255, 0.015)" : "rgba(255, 255, 255, 0.6)",
+                        border: `1px solid ${th.border}`,
+                        borderRadius: 16,
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 16,
+                        position: "relative",
+                        overflow: "hidden"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = "translateY(-4px)";
+                        e.currentTarget.style.borderColor = th.accent + "40";
+                        e.currentTarget.style.boxShadow = `0 10px 30px ${th.accent}0a`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = "translateY(0)";
+                        e.currentTarget.style.borderColor = th.border;
+                        e.currentTarget.style.boxShadow = "none";
+                      }}
+                    >
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <div style={{ 
+                          color: th.accent, 
+                          display: "flex", 
+                          alignItems: "center", 
+                          justifyContent: "center",
+                          width: 38,
+                          height: 38,
+                          borderRadius: 10,
+                          background: `${th.accent}0d`
+                        }}>
+                          {capabilitiesIcons[idx]}
+                        </div>
+                        <span className="inter-font" style={{ fontSize: 12, fontWeight: 800, opacity: 0.3 }}>0{idx + 1}</span>
+                      </div>
+                      
+                      <div>
+                        <h4 className="bg-font" style={{ fontSize: 16, fontWeight: 700, color: th.text, margin: "0 0 6px 0" }}>
+                          {cap.title}
+                        </h4>
+                        <p className="inter-font" style={{ fontSize: 13, color: th.textSub, lineHeight: 1.6, margin: 0 }}>
+                          {cap.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Software tab workspace & Open to work card */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
             
-            {/* LEFT COLUMN: Biography + 3 Info Cards */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 42 }}>
-              <Reveal direction="left">
-                <SL text={t.about.label} th={th} />
-                <h2 className="rl sh2" style={{ fontSize:72, fontWeight:900, lineHeight:0.92, letterSpacing:"-0.02em", marginBottom:36, color: th.text }}>
-                  {t.about.heading.split("\n").map((word, idx) => {
-                    const isLast = idx === 2;
-                    return (
-                      <span key={idx} style={{ display: "block", color: isLast ? th.accent : "inherit" }}>
-                        {word}
-                      </span>
-                    );
-                  })}
-                </h2>
-                <IntroCard t={t} th={th} isDark={isDark} />
-              </Reveal>
+            {/* Tabbed software card */}
+            <Reveal direction="left" delay={150}>
+              <div 
+                className="bento-card"
+                style={{
+                  padding: "32px",
+                  background: isDark ? "rgba(255, 255, 255, 0.015)" : "rgba(255, 255, 255, 0.6)",
+                  border: `1px solid ${th.border}`,
+                  borderRadius: 24,
+                  minHeight: 330,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  position: "relative"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = th.accent + "40";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = th.border;
+                }}
+              >
+                <div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+                    <span className="inter-font" style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", color: th.accent }}>
+                      WORKSPACE // {t.about.software.toUpperCase()}
+                    </span>
+                    <span className="inter-font" style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", color: th.textSub, opacity: 0.6 }}>
+                      ACTIVE: {activeTab.toUpperCase()}
+                    </span>
+                  </div>
 
-              <Reveal delay={100} direction="left">
-                <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                  {t.about.infoCards.map((card, idx) => {
-                    const icons = [
-                      <BookOpen style={{ width: 18, height: 18 }} />, 
-                      <Cpu style={{ width: 18, height: 18 }} />, 
-                      <Sparkles style={{ width: 18, height: 18 }} />
-                    ];
-                    return (
-                      <InfoCard key={idx} title={card.title} desc={card.desc} icon={icons[idx]} th={th} />
-                    );
-                  })}
+                  <div className="tc" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 24, alignItems: "start" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                      {t.about.softwareList.map(name => {
+                        const isSelected = activeTab === name;
+                        const brandColor = name === "Blender" ? "#F5792A" : name === "Autodesk Maya" ? "#00A8E0" : "#D29CFF";
+                        return (
+                          <button
+                            key={name}
+                            onClick={() => setActiveTab(name)}
+                            onMouseEnter={() => setActiveTab(name)}
+                            className="inter-font"
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: 12,
+                              padding: "12px 16px",
+                              borderRadius: 12,
+                              border: `1px solid ${isSelected ? brandColor + "50" : th.border}`,
+                              background: isSelected ? brandColor + "10" : (isDark ? "rgba(255, 255, 255, 0.01)" : "rgba(255, 255, 255, 0.3)"),
+                              color: isSelected ? th.text : th.textSub,
+                              fontSize: 13,
+                              fontWeight: 600,
+                              textAlign: "left",
+                              cursor: "pointer",
+                              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                              boxShadow: isSelected ? `0 4px 16px ${brandColor}15` : "none"
+                            }}
+                          >
+                            <div style={{ width: 20, height: 20, display: "flex", alignItems: "center", justifyContent: "center", filter: isSelected ? "none" : "grayscale(1) opacity(0.6)", transition: "all 0.3s" }}>
+                              {SW_DATA[name]?.logo}
+                            </div>
+                            <span style={{ flex: 1 }}>{name}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div 
+                      style={{
+                        padding: "20px",
+                        borderRadius: 16,
+                        background: isDark ? "rgba(255, 255, 255, 0.01)" : "rgba(0, 0, 0, 0.02)",
+                        border: `1px dashed ${th.border}`,
+                        minHeight: 160,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        gap: 12
+                      }}
+                    >
+                      {activeSoftwareDetails.map((detail, idx) => (
+                        <div key={idx} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                          <div style={{ width: 6, height: 6, borderRadius: "50%", background: activeColor, boxShadow: `0 0 8px ${activeColor}` }} />
+                          <span className="inter-font" style={{ fontSize: 13, fontWeight: 500, color: th.text }}>{detail}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </Reveal>
-            </div>
 
-            {/* RIGHT COLUMN: Software & Specializations + Open to Work Card */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 42 }}>
-              <Reveal delay={130} direction="right">
-                <p className="dm" style={{ fontSize:11, letterSpacing:"0.32em", color: th.accent, textTransform:"uppercase", marginBottom:18 }}>{t.about.software}</p>
-                <div style={{ display:"grid", gridTemplateColumns:"1fr", gap:14, marginBottom:42 }}>
-                  {t.about.softwareList.map(s=><SWBadge key={s} name={s} th={th} t={t} />)}
+                <div style={{ marginTop: 24 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                    <span className="inter-font" style={{ fontSize: 9, fontWeight: 700, color: th.textSub, opacity: 0.5 }}>TIMELINE TRACK</span>
+                    <span className="inter-font" style={{ fontSize: 9, fontWeight: 700, color: th.textSub, opacity: 0.5 }}>24 fps</span>
+                  </div>
+                  <div 
+                    style={{
+                      height: 8,
+                      borderRadius: 4,
+                      background: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(0, 0, 0, 0.05)",
+                      border: `1px solid ${th.border}`,
+                      position: "relative",
+                      overflow: "hidden"
+                    }}
+                  >
+                    <div style={{
+                      position: "absolute",
+                      left: `${playheadPos}%`,
+                      top: 0,
+                      bottom: 0,
+                      width: 2,
+                      background: activeColor,
+                      boxShadow: `0 0 8px ${activeColor}`
+                    }} />
+                  </div>
                 </div>
-                
-                <p className="dm" style={{ fontSize:11, letterSpacing:"0.32em", color: th.accent, textTransform:"uppercase", marginBottom:18 }}>{t.about.skills}</p>
-                <div style={{ display:"flex", flexWrap:"wrap", gap:10, marginBottom:42 }}>
-                  {t.about.skillsList.map(s=>(
-                    <SkillPill key={s} text={s} th={th} isDark={isDark} />
-                  ))}
+              </div>
+            </Reveal>
+
+            {/* Open to work card */}
+            <Reveal direction="left" delay={200}>
+              <div 
+                className="bento-card"
+                style={{
+                  padding: "32px",
+                  background: isDark ? "rgba(255, 255, 255, 0.015)" : "rgba(255, 255, 255, 0.6)",
+                  border: `1px solid ${th.border}`,
+                  borderRadius: 24,
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  position: "relative"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = th.accent + "40";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = th.border;
+                }}
+              >
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <div style={{ position: "relative", width: 8, height: 8 }}>
+                      <div className="pulsing-dot-outer" style={{ position: "absolute", inset: -4, borderRadius: "50%", background: "#4ade80", opacity: 0.4 }} />
+                      <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#22c55e" }} />
+                    </div>
+                    <span className="bg-font" style={{ fontSize: 11, fontWeight: 800, letterSpacing: "0.18em", textTransform: "uppercase", color: "#4ade80" }}>
+                      {t.about.openToWork.title}
+                    </span>
+                  </div>
+                  
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                    {t.about.openToWork.options.map((opt, idx) => (
+                      <div key={idx} style={{ display: "flex", alignItems: "center", gap: 6, background: isDark ? "rgba(74, 222, 128, 0.05)" : "rgba(34, 197, 94, 0.05)", border: `1px solid ${isDark ? "rgba(74, 222, 128, 0.15)" : "rgba(34, 197, 94, 0.15)"}`, padding: "6px 12px", borderRadius: 8 }}>
+                        <span className="inter-font" style={{ fontSize: 12, fontWeight: 500, color: isDark ? "#4ade80" : "#16a34a" }}>{opt}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </Reveal>
 
-              <Reveal delay={200} direction="right">
-                <OpenToWorkCard t={t} th={th} isDark={isDark} scrollTo={scrollTo} />
-              </Reveal>
-            </div>
-
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 12 }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+                    <span className="inter-font" style={{ fontSize: 11, fontWeight: 600, color: th.textSub, opacity: 0.7 }}>
+                      {t.about.openToWork.responseTimeLabel}
+                    </span>
+                    <span className="bg-font" style={{ fontSize: 13, fontWeight: 800, color: "#4ade80" }}>
+                      {t.about.openToWork.responseTime}
+                    </span>
+                  </div>
+                  
+                  <button
+                    onClick={() => scrollTo?.("contact")}
+                    className="inter-font"
+                    style={{
+                      padding: "10px 20px",
+                      borderRadius: 10,
+                      background: "#4ade80",
+                      color: "#06080c",
+                      fontWeight: 700,
+                      fontSize: 12,
+                      border: "none",
+                      cursor: "pointer",
+                      transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                      boxShadow: "0 4px 12px rgba(74, 222, 128, 0.15)"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = "0 8px 24px rgba(74, 222, 128, 0.35)";
+                      e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = "0 4px 12px rgba(74, 222, 128, 0.15)";
+                      e.currentTarget.style.transform = "translateY(0)";
+                    }}
+                  >
+                    {t.about.openToWork.btn}
+                  </button>
+                </div>
+              </div>
+            </Reveal>
+            
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 
-export const SW_DATA = {
+const SW_DATA = {
   "Autodesk Maya": {
     color: "#00A8E0",
     bg: "transparent",

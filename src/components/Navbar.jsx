@@ -7,7 +7,7 @@ export default function Navbar({ t, th, isDark, setIsDark, lang, setLang, langOp
     <>
       {/* NAV */}
       <nav style={{ position:"fixed", top:0, left:0, right:0, zIndex:100, backdropFilter: sc?"blur(24px) saturate(180%)":"none", background: sc?th.navBg:"transparent", borderBottom: sc?`1px solid ${th.divider}`:"none", transition:"all 0.4s ease" }}>
-        <div style={{ maxWidth:1240, margin:"0 auto", padding:"0 28px", height:66, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+        <div style={{ maxWidth:1240, margin:"0 auto", padding:"0 28px", height:66, display:"flex", alignItems:"center", justifyContent:"space-between", position:"relative" }}>
           {/* Logo / Name */}
           <div>
             <button 
@@ -45,7 +45,7 @@ export default function Navbar({ t, th, isDark, setIsDark, lang, setLang, langOp
           </div>
 
           {/* Nav links */}
-          <div className="nl" style={{ display:"flex", gap:40 }}>
+          <div className="nl" style={{ display:"flex", gap:40, position:"absolute", left:"50%", transform:"translateX(-50%)" }}>
             {t.nav.map((n,i) => (
               <button key={i} onClick={()=>scrollTo(["work","about","contact"][i])} className="dm nav-link"
                 style={{ fontSize:13, letterSpacing:"0.1em", color: th.textSub, transition:"color 0.3s, text-shadow 0.3s", background:"none", border:"none", cursor:"pointer", padding:"4px 0", position:"relative" }}

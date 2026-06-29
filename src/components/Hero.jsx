@@ -76,7 +76,7 @@ export default function Hero({ t, th, isDark, lang, typed, heroReady, cur, scrol
                 textTransform: "uppercase",
                 transition: "all 0.9s cubic-bezier(0.16,1,0.3,1)"
               }}>
-                UMIDBEK
+                {lang === "ru" ? "УМИДБЕК" : "UMIDBEK"}
               </span>
               <span className="rl hn name-karimov" style={{
                 fontSize: "clamp(64px, 11vw, 125px)",
@@ -88,7 +88,7 @@ export default function Hero({ t, th, isDark, lang, typed, heroReady, cur, scrol
                 textTransform: "uppercase",
                 transition: "all 0.9s cubic-bezier(0.16,1,0.3,1)"
               }}>
-                KARIMOV
+                {lang === "ru" ? "КАРИМОВ" : "KARIMOV"}
               </span>
             </div>
 
@@ -163,7 +163,7 @@ export default function Hero({ t, th, isDark, lang, typed, heroReady, cur, scrol
               boxShadow: `0 8px 30px ${th.accent}33`,
               animation: "bo 2s ease-in-out infinite"
             }}>
-              EXPLORE PORTFOLIO
+              {t.hero.explore ? t.hero.explore.toUpperCase() : "EXPLORE PORTFOLIO"}
               <ArrowRight style={{ width: 16, height: 16 }} />
             </button>
           </div>

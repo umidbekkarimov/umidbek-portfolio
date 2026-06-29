@@ -4,6 +4,9 @@ import Hero from "./components/Hero";
 import Work from "./components/Work";
 import About from "./components/About";
 import Contact from "./components/Contact";
+
+import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
 import { useScrollY, useInView, useTypewriter } from "./hooks/useScroll";
 import logoClassified from "./assets/uk_logo_classified_v2.json";
 import "./index.css";
@@ -19,7 +22,7 @@ import { T } from "./locales/translations";
 
 // ── Theme tokens ──────────────────────────────────────────────
 const DARK = {
-  bg:         "radial-gradient(circle at 50% 0%, #090e24 0%, #040610 60%, #020307 100%)",
+  bg:         "#040610",
   bgSec:      "#050816",
   surface:    "rgba(255,255,255,0.03)",
   surfaceHov: "rgba(255,255,255,0.06)",
@@ -180,7 +183,7 @@ export default function Portfolio() {
     return () => document.removeEventListener("mousedown", handleOutside);
   }, [langOpen]);
   const [activeVideo, setActiveVideo] = useState(null);
-  const [form, setForm] = useState({ name:"", email:"", msg:"" });
+  const [form, setForm] = useState({ name:"", email:"", niche:"", budget:"", msg:"" });
   const [fs, setFs] = useState("idle");
   const [cur, setCur] = useState(true);
   const [heroReady, setHeroReady] = useState(false);
@@ -244,10 +247,10 @@ export default function Portfolio() {
       const emailUser = "umidbekkarimov328";
       const emailDomain = "gmail.com";
       const subject = encodeURIComponent(`Portfolio contact from ${form.name}`);
-      const body = encodeURIComponent(`From: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.msg}`);
+      const body = encodeURIComponent(`From: ${form.name}\nEmail: ${form.email}\nNiche: ${form.niche || 'N/A'}\nBudget: ${form.budget || 'N/A'}\n\nMessage:\n${form.msg}`);
       window.location.href = `mailto:${emailUser}@${emailDomain}?subject=${subject}&body=${body}`;
       setFs("sent");
-      setForm({ name: "", email: "", msg: "" });
+      setForm({ name: "", email: "", niche: "", budget: "", msg: "" });
       setTimeout(() => setFs("idle"), 3500);
     };
     try {
@@ -259,12 +262,12 @@ export default function Portfolio() {
             service_id:      EMAILJS_SERVICE_ID,
             template_id:     EMAILJS_TEMPLATE_ID,
             user_id:         EMAILJS_PUBLIC_KEY,
-            template_params: { from_name: form.name, from_email: form.email, message: form.msg, to_email: ["umidbekkarimov328", "gmail.com"].join("@") },
+            template_params: { from_name: form.name, from_email: form.email, niche: form.niche || 'N/A', budget: form.budget || 'N/A', message: form.msg, to_email: ["umidbekkarimov328", "gmail.com"].join("@") },
           }),
         });
         if (res.ok) {
           setFs("sent");
-          setForm({ name: "", email: "", msg: "" });
+          setForm({ name: "", email: "", niche: "", budget: "", msg: "" });
           setTimeout(() => setFs("idle"), 3500);
           return;
         }
@@ -419,19 +422,8 @@ export default function Portfolio() {
 
       {/* Main Website Wrapper with Entrance Transition */}
       <div className={loading ? "content-hidden" : "content-visible"}>
-        {/* Background Particles */}
-        <ParticleBg isDark={isDark} />
-
         {/* Right vertical decorative line */}
         <div style={{ position:"fixed", right:18, top:0, height:"100vh", width:1, background:`linear-gradient(to bottom, transparent 0%, ${th.accent}30 25%, ${th.accent}55 50%, ${th.accent}30 75%, transparent 100%)`, zIndex:0, pointerEvents:"none" }} />
-        
-
-        {/* ORBS */}
-        <div className="orb-wrap" style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:0, overflow:"hidden", transition:"opacity 0.5s" }}>
-          <div style={{ position:"absolute", top:"-10%", left:"18%", width:700, height:700, borderRadius:"50%", background:"#3b82f6", filter:"blur(160px)", opacity: th.orbOp }} />
-          <div style={{ position:"absolute", top:"58%", right:"-6%", width:500, height:500, borderRadius:"50%", background:"#6366f1", filter:"blur(140px)", opacity: th.orbOp*0.75 }} />
-          <div style={{ position:"absolute", top:"33%", left:"-6%", width:400, height:400, borderRadius:"50%", background:"#0ea5e9", filter:"blur(130px)", opacity: th.orbOp*0.75 }} />
-        </div>
 
         
         {/* NAV */}
@@ -441,10 +433,16 @@ export default function Portfolio() {
         <Hero t={t} th={th} isDark={isDark} lang={lang} typed={typed} heroReady={heroReady} cur={cur} scrollTo={scrollTo} handleShowreel={handleShowreel} stage={stage} setStage={setStage} />
 
         {/* WORK */}
-        <Work t={t} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} workRef={workRef} showreelRef={showreelRef} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} stage={stage} setStage={setStage} />
+        <Work t={t} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} workRef={workRef} showreelRef={showreelRef} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} stage={stage} setStage={setStage} lang={lang} />
 
         {/* ABOUT */}
         <About t={t} th={th} isDark={isDark} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} scrollTo={scrollTo} />
+
+        {/* TESTIMONIALS */}
+        <Testimonials t={t} th={th} isDark={isDark} SL={SL} Reveal={Reveal} />
+
+        {/* FAQ */}
+        <FAQ t={t} th={th} isDark={isDark} SL={SL} Reveal={Reveal} />
 
         {/* CONTACT */}
         <Contact t={t} th={th} isDark={isDark} form={form} setForm={setForm} fs={fs} send={send}  Reveal={Reveal} SL={SL} lang={lang} />

@@ -3,7 +3,9 @@ import { ExternalLink, Mail, Send, Download } from "lucide-react";
 import { FaLinkedin, FaInstagram } from "react-icons/fa";
 import { TGIcon } from "./icons";
 
-export default function Contact({ t, th, isDark, form, setForm, fs, send, Reveal, SL, lang }) {
+export default function Contact({ t, th, isDark, form, setForm, fs, send, Reveal, SL }) {
+  const [showResumeOpts, setShowResumeOpts] = useState(false);
+
   return (
     <>
       {/* ═══ CONTACT ═══ */}
@@ -17,7 +19,27 @@ export default function Contact({ t, th, isDark, form, setForm, fs, send, Reveal
           <div className="tc contact-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:80 }}>
             <Reveal delay={100} direction="left">
               <div className="contact-panels" style={{ display:"flex", flexDirection:"column", gap:10 }}>
-                <CPanel label={t.contact.resume} icon={<Download style={{width:20,height:20}}/>} color={th.accent} href="/Umidbek-Karimov-CV.pdf" th={th} />
+                <CPanel label={t.contact.resume} icon={<Download style={{width:20,height:20}}/>} color={th.accent} isBtn onClick={() => setShowResumeOpts(!showResumeOpts)} th={th} />
+                
+                {showResumeOpts && (
+                  <div style={{
+                    display: "flex",
+                    gap: 8,
+                    padding: "10px 12px",
+                    borderRadius: 16,
+                    border: `1px solid ${th.border}`,
+                    background: th.surface,
+                    marginTop: -4,
+                    marginBottom: 4,
+                    animation: "fadeIn 0.28s ease",
+                    backdropFilter: "blur(8px)"
+                  }}>
+                    <LangBtn href="/Umidbek-Karimov-CV-EN.pdf" downloadName="Umidbek-Karimov-Resume-EN.pdf" flag="🇺🇸" label="EN" th={th} />
+                    <LangBtn href="/Umidbek-Karimov-CV-RU.pdf" downloadName="Umidbek-Karimov-Resume-RU.pdf" flag="🇷🇺" label="RU" th={th} />
+                    <LangBtn href="/Umidbek-Karimov-CV-UZ.pdf" downloadName="Umidbek-Karimov-Resume-UZ.pdf" flag="🇺🇿" label="UZ" th={th} />
+                  </div>
+                )}
+
                 <CPanel label={t.contact.linkedin} icon={<FaLinkedin style={{width:20,height:20}}/>} color="#0A66C2" href="https://www.linkedin.com/in/umidbek-karimov-564581344" th={th} />
                 <CPanel label={t.contact.telegram} icon={<TGIcon/>} color="#2AABEE" href="https://t.me/Umidbek_Karimovv" th={th} />
                 <CPanel label={t.contact.instagram} icon={<FaInstagram style={{width:20,height:20}}/>} color="#E1306C" href="https://instagram.com/marc.3d" th={th} />
@@ -86,8 +108,41 @@ const CPanel = ({ label, icon, color, href, isBtn, onClick, th }) => {
   const inner = <>
     <span style={{ width:42, height:42, borderRadius:12, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, background: color+"22", color, transition:"transform 0.28s", transform: h?"scale(1.1)":"scale(1)" }}>{icon}</span>
     <span className="inter-font" style={{ fontSize:15, color: h?th.text:th.textSub, transition:"color 0.28s", flex:1, fontWeight:500 }}>{label}</span>
-    <ExternalLink style={{ width:14, height:14, color: h?th.textMuted:th.textFaint }} />
+    <ExternalLink style={{ width:14, height:14, color: h?th.textMuted:th.textFaint, transform: h?"rotate(45deg)":"none", transition:"transform 0.28s ease" }} />
   </>;
   if (isBtn) return <button type="button" onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)} onClick={onClick} style={s}>{inner}</button>;
   return <a href={href} target="_blank" rel="noopener noreferrer" onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)} onContextMenu={e=>e.preventDefault()} onDragStart={e=>e.preventDefault()} onCopy={e=>e.preventDefault()} style={s}>{inner}</a>;
+};
+
+const LangBtn = ({ href, downloadName, flag, label, th }) => {
+  const [h, setH] = useState(false);
+  return (
+    <a
+      href={href}
+      download={downloadName}
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        flex: 1,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 6,
+        padding: "8px 12px",
+        borderRadius: 10,
+        border: `1px solid ${h ? th.accent + "50" : th.border}`,
+        background: h ? th.surfaceHov : th.surface,
+        color: h ? th.text : th.textSub,
+        fontSize: 13,
+        fontWeight: 700,
+        textDecoration: "none",
+        transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)",
+        transform: h ? "translateY(-2px)" : "none",
+        boxShadow: h ? `0 4px 12px ${th.accent}15` : "none"
+      }}
+    >
+      <span>{flag}</span>
+      <span>{label}</span>
+    </a>
+  );
 };

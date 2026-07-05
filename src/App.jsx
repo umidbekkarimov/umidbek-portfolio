@@ -8,7 +8,7 @@ import Contact from "./components/Contact";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import { useScrollY, useInView, useTypewriter } from "./hooks/useScroll";
-import logoClassified from "./assets/uk_logo_classified_v2.json";
+// Logo preloader JSON removed
 import "./index.css";
 // ── EmailJS sozlamalari — emailjs.com da hisob oching ────────
 // 1. emailjs.com ga kiring → Email Services → Service ID
@@ -31,7 +31,7 @@ const DARK = {
   text:       "#f1f5f9",
   textSub:    "#94a3b8",
   textMuted:  "#475569",
-  textFaint:  "#1e293b",
+  textFaint:  "#64748b",
   navBg:      "rgba(4, 6, 16, 0.85)",
   cardBg:     "rgba(255,255,255,0.025)",
   inputBg:    "rgba(255,255,255,0.03)",
@@ -56,7 +56,7 @@ const LIGHT = {
   text:       "#0f172a",
   textSub:    "#334155",
   textMuted:  "#64748b",
-  textFaint:  "#94a3b8",
+  textFaint:  "#475569",
   navBg:      "rgba(246,248,250,0.8)",
   cardBg:     "rgba(255,255,255,0.75)",
   inputBg:    "#ffffff",
@@ -121,52 +121,7 @@ import { FlagEN, FlagRU, FlagUZ } from "./components/icons";
 const FLAG_COMPONENTS = { en: <FlagEN/>, ru: <FlagRU/>, uz: <FlagUZ/> };
 const LANG_LABELS = { en: "English", ru: "Русский", uz: "O'zbek" };
 
-// ── Particle Background ───────────────────────────────────────
-const ParticleBg = ({ isDark }) => {
-  if (!isDark) return null;
-  
-  const particles = React.useMemo(() => {
-    const arr = [];
-    for (let i = 0; i < 40; i++) {
-      arr.push({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        bottom: `${Math.random() * 20 - 10}%`,
-        size: Math.random() * 2 + 1, // 1px to 3px
-        delay: Math.random() * 20,
-        duration: Math.random() * 20 + 20, // 20s to 40s
-        opacity: Math.random() * 0.35 + 0.15
-      });
-    }
-    return arr;
-  }, []);
 
-  return (
-    <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
-      {particles.map(p => (
-        <div
-          key={p.id}
-          className="bg-particle"
-          style={{
-            position: "absolute",
-            left: p.left,
-            bottom: p.bottom,
-            width: p.size,
-            height: p.size,
-            borderRadius: "50%",
-            background: "#ffffff",
-            opacity: p.opacity,
-            animationDelay: `${p.delay}s`,
-            animationDuration: `${p.duration}s`,
-            animationName: "floatParticle",
-            animationTimingFunction: "linear",
-            animationIterationCount: "infinite"
-          }}
-        />
-      ))}
-    </div>
-  );
-};
 
 // ── Main Export ───────────────────────────────────────────────
 export default function Portfolio() {
@@ -182,61 +137,21 @@ export default function Portfolio() {
     document.addEventListener("mousedown", handleOutside);
     return () => document.removeEventListener("mousedown", handleOutside);
   }, [langOpen]);
-  const [activeVideo, setActiveVideo] = useState(null);
   const [form, setForm] = useState({ name:"", email:"", niche:"", budget:"", msg:"" });
   const [fs, setFs] = useState("idle");
   const [cur, setCur] = useState(true);
-  const [heroReady, setHeroReady] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [heroReady, setHeroReady] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [playShowreelTrigger, setPlayShowreelTrigger] = useState(0);
   const [fade, setFade] = useState(false);
   const scrollY = useScrollY();
-  const [stage, setStage] = useState(0);
-
-  useEffect(() => {
-    if (scrollY > 350) {
-      setStage(2);
-    } else if (scrollY > 30) {
-      setStage(1);
-    } else {
-      setStage(0);
-    }
-  }, [scrollY]);
-
-  useEffect(() => {
-    const fadeTimer = setTimeout(() => setFade(true), 2200);
-    const loadTimer = setTimeout(() => setLoading(false), 2700);
-    return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(loadTimer);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!loading) {
-      const timer = setTimeout(() => setHeroReady(true), 100);
-      return () => clearTimeout(timer);
-    }
-  }, [loading]);
+  const stage = scrollY > 350 ? 2 : (scrollY > 30 ? 1 : 0);
   const t = T[lang];
   const th = isDark ? DARK : LIGHT;
   const typed = useTypewriter(t.hero.role, 65);
   const workRef = useRef(null);
-  const showreelRef = useRef(null);
 
   useEffect(() => { const id = setInterval(()=>setCur(v=>!v), 530); return ()=>clearInterval(id); }, []);
-
-  const handleShowreel = () => {
-    const next = activeVideo === "showreel" ? null : "showreel";
-    setActiveVideo(next);
-    if (next === "showreel") {
-      setTimeout(() => {
-        if (showreelRef.current) {
-          const top = showreelRef.current.getBoundingClientRect().top + window.scrollY - 80;
-          window.scrollTo({ top, behavior: "smooth" });
-        }
-      }, 120);
-    }
-  };
 
   const send = async () => {
     if (!form.name || !form.email || !form.msg) return;
@@ -285,6 +200,11 @@ export default function Portfolio() {
     if (!el) return;
     const top = el.getBoundingClientRect().top + window.scrollY - 66;
     window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  const handleExplore = () => {
+    scrollTo("work");
+    setPlayShowreelTrigger(prev => prev + 1);
   };
 
   return (
@@ -339,89 +259,12 @@ export default function Portfolio() {
         </defs>
       </svg>
 
-      {/* Preloader Overlay */}
-      {loading && (
-        <div className={`preloader-overlay ${fade ? "fade-out" : ""}`}>
-          {/* Ambient Background Glow */}
-          <div className="preloader-glow-bg" />
-
-          <div className="preloader-logo-container">
-            <svg 
-              className="preloader-svg-new" 
-              viewBox="0 0 1536 1024" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* ── Stage 2: U Left ── */}
-              <g className="logo-u-left">
-                {logoClassified.u_left.map((p, i) => (
-                  <path
-                    key={i}
-                    d={p.d}
-                    fill={p.fill}
-                    transform={p.transform}
-                  />
-                ))}
-              </g>
-
-              {/* ── Stage 2: U Right ── */}
-              <g className="logo-u-right">
-                {logoClassified.u_right.map((p, i) => (
-                  <path
-                    key={i}
-                    d={p.d}
-                    fill={p.fill}
-                    transform={p.transform}
-                  />
-                ))}
-              </g>
-
-              {/* ── Stage 2: U Bottom ── */}
-              <g className="logo-u-bottom">
-                {logoClassified.u_bottom.map((p, i) => (
-                  <path
-                    key={i}
-                    d={p.d}
-                    fill={p.fill}
-                    transform={p.transform}
-                  />
-                ))}
-              </g>
-
-              {/* ── Stage 3: K Upper ── */}
-              <g className="logo-k-upper">
-                {logoClassified.k_upper.map((p, i) => (
-                  <path
-                    key={i}
-                    d={p.d}
-                    fill={p.fill}
-                    transform={p.transform}
-                  />
-                ))}
-              </g>
-
-              {/* ── Stage 4: K Lower ── */}
-              <g className="logo-k-lower">
-                {logoClassified.k_lower.map((p, i) => (
-                  <path
-                    key={i}
-                    d={p.d}
-                    fill={p.fill}
-                    transform={p.transform}
-                  />
-                ))}
-              </g>
-            </svg>
-            <div className="preloader-text-wrap">
-              <h1 className="preloader-title">UMIDBEK KARIMOV</h1>
-              <p className="preloader-subtitle">3D ANIMATION & MOTION DESIGN</p>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Preloader Overlay Removed */}
 
       {/* Main Website Wrapper with Entrance Transition */}
       <div className={loading ? "content-hidden" : "content-visible"}>
+
+
         {/* Right vertical decorative line */}
         <div style={{ position:"fixed", right:18, top:0, height:"100vh", width:1, background:`linear-gradient(to bottom, transparent 0%, ${th.accent}30 25%, ${th.accent}55 50%, ${th.accent}30 75%, transparent 100%)`, zIndex:0, pointerEvents:"none" }} />
 
@@ -430,10 +273,10 @@ export default function Portfolio() {
         <Navbar t={t} th={th} isDark={isDark} setIsDark={setIsDark} lang={lang} setLang={setLang} langOpen={langOpen} setLangOpen={setLangOpen} menuOpen={menuOpen} setMenuOpen={setMenuOpen} sc={sc} scrollTo={scrollTo} langRef={langRef} FLAG_COMPONENTS={FLAG_COMPONENTS} LANG_LABELS={LANG_LABELS} />
 
         {/* HERO */}
-        <Hero t={t} th={th} isDark={isDark} lang={lang} typed={typed} heroReady={heroReady} cur={cur} scrollTo={scrollTo} handleShowreel={handleShowreel} stage={stage} setStage={setStage} />
+        <Hero t={t} th={th} isDark={isDark} lang={lang} heroReady={heroReady} stage={stage} typed={typed} cur={cur} onExplore={handleExplore} />
 
         {/* WORK */}
-        <Work t={t} th={th} isDark={isDark} activeVideo={activeVideo} setActiveVideo={setActiveVideo} workRef={workRef} showreelRef={showreelRef} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} stage={stage} setStage={setStage} lang={lang} />
+        <Work t={t} th={th} isDark={isDark} workRef={workRef} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} lang={lang} playShowreelTrigger={playShowreelTrigger} />
 
         {/* ABOUT */}
         <About t={t} th={th} isDark={isDark} SL={SL} Reveal={Reveal} RevealGroup={RevealGroup} scrollTo={scrollTo} />
@@ -445,7 +288,7 @@ export default function Portfolio() {
         <FAQ t={t} th={th} isDark={isDark} SL={SL} Reveal={Reveal} />
 
         {/* CONTACT */}
-        <Contact t={t} th={th} isDark={isDark} form={form} setForm={setForm} fs={fs} send={send}  Reveal={Reveal} SL={SL} lang={lang} />
+        <Contact t={t} th={th} isDark={isDark} form={form} setForm={setForm} fs={fs} send={send}  Reveal={Reveal} SL={SL} />
 
         {/* FOOTER */}
         <footer style={{ position:"relative", zIndex:1, borderTop:`1px solid ${th.divider}`, padding:"34px 28px" }}>

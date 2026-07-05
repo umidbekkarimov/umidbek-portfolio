@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 
 export default function FAQ({ t, th, isDark, SL, Reveal }) {
@@ -32,9 +32,18 @@ export default function FAQ({ t, th, isDark, SL, Reveal }) {
 const FAQItem = ({ item, th, isDark }) => {
   const [open, setOpen] = useState(false);
   const [h, setH] = useState(false);
+  const [height, setHeight] = useState(0);
   const contentRef = useRef(null);
 
   const toggle = () => setOpen(!open);
+
+  useEffect(() => {
+    if (open && contentRef.current) {
+      setHeight(contentRef.current.scrollHeight + 32);
+    } else {
+      setHeight(0);
+    }
+  }, [open]);
 
   return (
     <div
@@ -66,7 +75,7 @@ const FAQItem = ({ item, th, isDark }) => {
       <div
         className="faq-answer-wrapper"
         style={{
-          maxHeight: open ? contentRef.current?.scrollHeight + 32 : 0,
+          maxHeight: height,
           opacity: open ? 1 : 0,
           overflow: "hidden"
         }}

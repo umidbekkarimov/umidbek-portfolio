@@ -81,7 +81,7 @@ export const T = {
       label: "Обо мне",
       heading: "Умидбек Каримов",
       subHeading: "3D Animator & Motion Designer",
-      bio: "Я Умидбек Каримов, 3D-аниматор и Motion Designer из Ташкента. Я создаю плавную анимацию персонажей и динамичный видеоконтент. Опираясь на фундаментальные принципы движения — вес, тайминг и сторителлинг, я вдыхаю жизнь в цифровых персонажей, делая движения реалистичными и эмоциональными.",
+      bio: "Меня зовут Умидбек Каримов. Я — 3D-аниматор и Mоушн-дизайнер из Ташкента. Я создаю чистую, качественную анимацию персонажей и динамичную motion-графику. Опираясь на ключевые принципы анимации — тайминг, ощущение веса и визуальное повествование, — я оживляю цифровых персонажей, делая их движения естественными, убедительными и эмоционально выразительными.",
       capabilitiesTitle: "Что я умею делать",
       capabilities: [
         { title: "Анимация персонажей", desc: "Реалистичная актерская игра, механика тела и выразительная мимика в Maya и Blender." },
@@ -104,7 +104,7 @@ export const T = {
         btn: "Связаться со мной"
       }
     },
-    contact: { label: "Контакты", heading: "Создадим\nЧто-то Великое", sub: "Открыт для фриланса, постоянной работы и коллабораций.", resume: "Скачать Резюме", telegram: "Telegram", linkedin: "LinkedIn", instagram: "Instagram", gmail: "Написать Email", formTitle: "Быстрое сообщение", namePh: "Ваше имя", emailPh: "Ваш Email", msgPh: "Ваше сообщение", send: "Отправить", sending: "Отправляется…", sent: "Отправлено ✓" },
+    contact: { label: "Контакты", heading: "Давайте вместе создавать\nнечто выдающееся.", sub: "Открыт для фриланса, постоянной работы и коллабораций.", resume: "Скачать Резюме", telegram: "Telegram", linkedin: "LinkedIn", instagram: "Instagram", gmail: "Написать Email", formTitle: "Быстрое сообщение", namePh: "Ваше имя", emailPh: "Ваш Email", msgPh: "Ваше сообщение", send: "Отправить", sending: "Отправляется…", sent: "Отправлено ✓" },
     whyMe: {
       label: "Почему я?",
       heading: "Не просто красивые кадры\nЯ создаю живых персонажей",
@@ -145,7 +145,7 @@ export const T = {
   },
   uz: {
     nav: ["Ishlar", "Men haqimda", "Aloqa"],
-    hero: { greeting: "Salom, men", name: "Umidbek Karimov", role: "3D Animator | Motion Designer", bio: "3D Animator va Motion Designer. Qahramonlar animatsiyasi hamda dinamik video kontentlar yaratishga ixtisoslashganman. Ish jarayonimda animatsiyaning fundamental prinsiplari — tana mexanikasi, ogʻirlik, tayming va vizual hikoyachilik qonuniyatlariga qatʼiy eʼtibor qaratgan holda, Autodesk Maya va After Effects muhitida yuqori sifatli vizual yechimlar ishlab chiqaman. Geymdev studiyalari, animatsiya ishlab chiqarish jamoalari va video agentliklarda shtatdagi (full-time) hamda frilans loyihalarda ishlashga tayyorman.", cta1: "Showreelni ko'rish", cta2: "Bog'lanish", badge: "Ishga tayyor", scroll: "Pastga", explore: "Ishlarni ko'rish" },
+    hero: { greeting: "Salom, men", name: "Umidbek Karimov", role: "3D Animator | Motion dizayner", bio: "3D Animator va Motion Designer. Qahramonlar animatsiyasi hamda dinamik video kontentlar yaratishga ixtisoslashganman. Ish jarayonimda animatsiyaning fundamental prinsiplari — tana mexanikasi, ogʻirlik, tayming va vizual hikoyachilik qonuniyatlariga qatʼiy eʼtibor qaratgan holda, Autodesk Maya va After Effects muhitida yuqori sifatli vizual yechimlar ishlab chiqaman. Geymdev studiyalari, animatsiya ishlab chiqarish jamoalari va video agentliklarda shtatdagi (full-time) hamda frilans loyihalarda ishlashga tayyorman.", cta1: "Showreelni ko'rish", cta2: "Bog'lanish", badge: "Ishga tayyor", scroll: "Pastga", explore: "Ishlarni ko'rish" },
     work: { label: "Mening ishlarim", heading: "3D qahramonlarni\njonlantirish", showreelTitle: "Showreel 2026", showreelMeta: "2 daqiqa 30 soniya  ·  HD 1080p", projects: [
       { title: "Motion graphics - Post Production", category: "Motion dizayn · After Effects", video: "/videos/Sequence_01_1.mp4", poster: "/commercial-motion-poster.png" }
     ] },
@@ -153,7 +153,7 @@ export const T = {
       label: "Men haqimda",
       heading: "Umidbek Karimov",
       subHeading: "3D Animator & Motion Designer",
-      bio: "Men Umidbek Karimov, Toshkentda faoliyat yurituvchi 3D Animator va Motion Designer-man. Men xarakterlar ijrosi va dinamik motion dizayn loyihalarini yarataman. Harakatning fundamental prinsiplari — tayming, og'irlik va hikoyachilikdan foydalanib, raqamli personajlarni jonlantiramiz va ularning harakatini ishonchli hamda ta'sirchan qilaman.",
+      bio: "Men Umidbek Karimov, Toshkent shahrida faoliyat yurituvchi 3D animator va Motion Dizaynerman. Men toza, sifatli va yuqori samaradorlikka yo'naltirilgan qahramon animatsiyalari hamda dinamik motion grafikalar yarataman. Animatsiyaning asosiy tamoyillari — <strong>harakat ritmi, og'irlik hissi va hikoya yaratish san'ati</strong>ga tayangan holda, qahramonlarga hayot bag'ishlayman va ularning harakatlarini ishonarli hamda hissiy jihatdan ta'sirchan qilaman.",
       capabilitiesTitle: "Men Qila Oladigan Ishlar",
       capabilities: [
         { title: "Qahramonlar Animatsiyasi", desc: "Maya va Blender dasturlarida personajlarning aktyorlik mahorati, tana harakatlari va mimikalarini jonlantirish." },
@@ -176,7 +176,7 @@ export const T = {
         btn: "Men bilan bog'lanish"
       }
     },
-    contact: { label: "Aloqa", heading: "Ajoyib Narsa\nBirga Yarataylik", sub: "Frilanс, to'liq kunlik ish va ijodiy hamkorlik uchun ochiqman.", resume: "Rezyume yuklab olish", telegram: "Telegram", linkedin: "LinkedIn", instagram: "Instagram", gmail: "Email yuborish", formTitle: "Tezkor xabar", namePh: "Ismingiz", emailPh: "Emailingiz", msgPh: "Xabaringiz", send: "Yuborish", sending: "Yuborilmoqda…", sent: "Yuborildi ✓" },
+    contact: { label: "Aloqa", heading: "Keling, birgalikda\najoyib loyihalar yarataylik.", sub: "Frilanс, to'liq kunlik ish va ijodiy hamkorlik uchun ochiqman.", resume: "Rezyume yuklab olish", telegram: "Telegram", linkedin: "LinkedIn", instagram: "Instagram", gmail: "Email yuborish", formTitle: "Tezkor xabar", namePh: "Ismingiz", emailPh: "Emailingiz", msgPh: "Xabaringiz", send: "Yuborish", sending: "Yuborilmoqda…", sent: "Yuborildi ✓" },
     whyMe: {
       label: "Nega aynan men?",
       heading: "Faqatgina chiroyli harakat emas\nMen tirik qahramonlarni yarataman",
@@ -213,6 +213,6 @@ export const T = {
         { q: "Agar yakuniy animatsiya natijasi yoqmasa-chi?", a: "Sizning mamnunligingiz men uchun muhim. Bloking va qoralama harakatlarni oldindan kelishib olishimiz yakuniy natijaning a'lo bo'lishini kafolatlaydi." }
       ]
     },
-    footer: "Ehtiros bilan yaratilgan. Barcha huquqlar himoyalangan.",
+    footer: "Mehr bilan yaratilgan. Barcha huquqlar himoyalangan.",
   },
 };

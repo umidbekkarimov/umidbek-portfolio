@@ -1,7 +1,6 @@
-import React from "react";
 import { ArrowRight } from "lucide-react";
 
-export default function Hero({ t, th, isDark, lang, typed, heroReady, cur, scrollTo, handleShowreel, stage, setStage }) {
+export default function Hero({ t, th, isDark, lang, heroReady, stage, typed, cur, onExplore }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
@@ -29,7 +28,7 @@ export default function Hero({ t, th, isDark, lang, typed, heroReady, cur, scrol
           <div style={{ position: "absolute", left: 0, right: 0, top: "50%", height: 1, background: `linear-gradient(to right, transparent, ${th.accent}1c, transparent)` }} />
         </div>
 
-        <div className={`hero-stage-container stage-${stage}`} style={{ maxWidth: 1240, margin: "0 auto", padding: "80px 28px 20px", width: "100%", position: "relative", zIndex: 1, transition: "all 0.9s cubic-bezier(0.16,1,0.3,1)" }}>
+        <div className={`hero-stage-container stage-${stage}`} style={{ maxWidth: 1240, margin: "0 auto", padding: "130px 28px 20px", width: "100%", position: "relative", zIndex: 1, transition: "all 0.9s cubic-bezier(0.16,1,0.3,1)" }}>
           
           {/* Subtitle Role (Stage 0 only) */}
           <div className="hero-role-badge" style={{
@@ -43,7 +42,7 @@ export default function Hero({ t, th, isDark, lang, typed, heroReady, cur, scrol
             transition: "all 0.8s cubic-bezier(0.16,1,0.3,1)"
           }}>
             <span className="dm" style={{ fontSize: 13, letterSpacing: "0.25em", color: th.textSub, textTransform: "uppercase", fontWeight: 700 }}>
-              {t.hero.role.toUpperCase()}
+              {typed.toUpperCase()}{cur ? "|" : " "}
             </span>
             <span style={{ display: "inline-block", width: 30, height: 1.5, background: th.accent, borderRadius: 2 }} />
           </div>
@@ -145,9 +144,7 @@ export default function Hero({ t, th, isDark, lang, typed, heroReady, cur, scrol
             pointerEvents: stage === 0 ? "all" : "none",
             transition: "all 0.8s cubic-bezier(0.16,1,0.3,1)"
           }}>
-            <button onClick={() => {
-              window.scrollTo({ top: 180, behavior: "smooth" });
-            }} className="dm" style={{
+            <button onClick={onExplore} className="dm" style={{
               display: "flex",
               alignItems: "center",
               gap: 12,

@@ -1,5 +1,5 @@
 
-export const TGIcon = () => <svg viewBox="0 0 24 24" fill="currentColor" style={{width:20,height:20}}><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.25-2.04 9.61c-.15.66-.55.82-1.11.51l-3.06-2.26-1.48 1.42c-.16.16-.3.3-.62.3l.22-3.12 5.68-5.13c.24-.22-.05-.34-.38-.12L7.38 14.53l-3.02-.94c-.66-.2-.67-.66.14-.97l11.82-4.56c.55-.2 1.03.13.84.57z"/></svg>;
+export const TGIcon = (props) => <svg viewBox="0 0 24 24" fill="currentColor" style={{width:20,height:20}} {...props}><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.25-2.04 9.61c-.15.66-.55.82-1.11.51l-3.06-2.26-1.48 1.42c-.16.16-.3.3-.62.3l.22-3.12 5.68-5.13c.24-.22-.05-.34-.38-.12L7.38 14.53l-3.02-.94c-.66-.2-.67-.66.14-.97l11.82-4.56c.55-.2 1.03.13.84.57z"/></svg>;
 
 export const FlagEN = () => (
   <svg viewBox="0 0 22 16" style={{width:22,height:16,borderRadius:3,display:"block",flexShrink:0}} xmlns="http://www.w3.org/2000/svg">

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { Play, Pause, Volume2, VolumeX, Maximize2, Layers, Cpu, Film, Sliders, Settings, Tv } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Maximize2 } from "lucide-react";
 
-export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workRef, showreelRef, SL, Reveal, lang }) {
+export default function Work({ t, th, isDark, workRef, SL, Reveal, lang, playShowreelTrigger }) {
   // Localized workflow stages description
   const workflowData = {
     en: {
@@ -97,7 +97,6 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
   const [muted, setMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(80);
 
   // Active production stage state
   const [activeStage, setActiveStage] = useState("blocking");
@@ -106,14 +105,29 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
   const videoRef = useRef(null);
   const monitorContainerRef = useRef(null);
 
-  // Restart video when active project changes
-  useEffect(() => {
+  const selectProject = (idx) => {
+    setActiveProjectIdx(idx);
     setPlaying(false);
     setCurrentTime(0);
     if (videoRef.current) {
       videoRef.current.load();
     }
-  }, [activeProjectIdx]);
+  };
+
+  useEffect(() => {
+    if (playShowreelTrigger > 0) {
+      selectProject(0);
+      setPlaying(true);
+      if (videoRef.current) {
+        videoRef.current.play().catch(err => {
+          console.warn("Autoplay blocked, attempting muted fallback:", err);
+          setMuted(true);
+          videoRef.current.muted = true;
+          videoRef.current.play().catch(() => {});
+        });
+      }
+    }
+  }, [playShowreelTrigger]);
 
   const togglePlay = () => {
     if (!videoRef.current) return;
@@ -263,7 +277,7 @@ export default function Work({ t, th, isDark, activeVideo, setActiveVideo, workR
                   return (
                     <button
                       key={idx}
-                      onClick={() => setActiveProjectIdx(idx)}
+                      onClick={() => selectProject(idx)}
                       style={{
                         display: "flex",
                         alignItems: "center",

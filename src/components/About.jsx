@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Check, Activity, Sparkles, Video, Cpu, Clock, Play } from "lucide-react";
+import { Activity, Sparkles, Video, Cpu } from "lucide-react";
 
 export default function About({ t, th, isDark, SL, Reveal, scrollTo }) {
   // We want to support selecting different software in the Toolkit Card
@@ -52,9 +52,7 @@ export default function About({ t, th, isDark, SL, Reveal, scrollTo }) {
           <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
             {/* Bio Paragraph */}
             <Reveal direction="right" delay={100}>
-              <p className="inter-font" style={{ fontSize: 17, lineHeight: 1.8, color: th.textSub, margin: 0, fontWeight: 400 }}>
-                {t.about.bio}
-              </p>
+              <p className="inter-font" style={{ fontSize: 17, lineHeight: 1.8, color: th.textSub, margin: 0, fontWeight: 400 }} dangerouslySetInnerHTML={{ __html: t.about.bio }} />
             </Reveal>
 
             {/* Capabilities grid */}
@@ -365,56 +363,4 @@ const SW_DATA = {
   },
 };
 
-const SWBadge = ({ name, th, t }) => {
-  const [h, setH] = useState(false);
-  const sw = SW_DATA[name] || { color: th.accent, bg: "transparent", logo: null };
-  
-  let key = "Maya";
-  if (name === "Blender") key = "Blender";
-  if (name === "After Effects") key = "AfterEffects";
-  
-  const bullets = t.about.softwareDetails?.[key] || [];
-
-  return (
-    <div
-      onMouseEnter={()=>setH(true)}
-      onMouseLeave={()=>setH(false)}
-      style={{
-        display:"flex", alignItems:"start", gap:16,
-        padding:"18px 20px", borderRadius:18,
-        border:`1px solid ${h ? sw.color+"60" : th.border}`,
-        background: h ? sw.color+"0c" : th.surface,
-        transition:"all 0.3s cubic-bezier(0.16,1,0.3,1)",
-        cursor:"default",
-        transform: h ? "translateY(-4px)" : "none",
-        boxShadow: h ? `0 10px 24px ${sw.color}14` : "none",
-      }}
-    >
-      <div style={{ 
-        flexShrink:0, width:44, height:44, borderRadius:10, 
-        overflow:"hidden", display:"flex", alignItems:"center", justifyContent:"center", 
-        background: sw.bg || "rgba(255,255,255,0.03)", 
-        border: `1px solid ${h ? sw.color + "aa" : "transparent"}`,
-        boxShadow: h ? `0 0 14px ${sw.color}33` : "none", 
-        transition:"all 0.3s ease" 
-      }}>
-        <div style={{ width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          {sw.logo}
-        </div>
-      </div>
-      <div style={{ flex: 1 }}>
-        <div style={{ fontFamily:"DM Sans, sans-serif", fontSize:15, fontWeight:700, color: h ? sw.color : th.text, transition:"color 0.3s", marginBottom: 6 }}>
-          {name}
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
-          {bullets.map((b, idx) => (
-            <div key={idx} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ width: 4, height: 4, borderRadius: "50%", background: h ? sw.color : th.textMuted, opacity: 0.8, transition: "background 0.3s" }} />
-              <span style={{ fontFamily:"DM Sans, sans-serif", fontSize:12, color: th.textSub, lineHeight: 1.3 }}>{b}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
+// SWBadge component is unused in this build

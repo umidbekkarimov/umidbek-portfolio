@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Sparkles, Monitor, Zap, PiggyBank, MessageSquare } from "lucide-react";
 
 export default function WhyMe({ t, th, isDark, SL, Reveal }) {
